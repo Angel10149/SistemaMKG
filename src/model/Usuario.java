@@ -6,9 +6,8 @@ import java.util.ArrayList;
 public class Usuario extends Persona{
     private String codigoUsuario;
     private String password;
-    private boolean estado;
     private Rol rol;
-    private LocalDateTime fechaCreacion;
+    private boolean estado;
     
     private static ArrayList<Usuario> listaUsuarios = new ArrayList<>();
 

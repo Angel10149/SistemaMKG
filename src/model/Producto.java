@@ -13,8 +13,13 @@ public class Producto {
     private int stockActual;
     private int stockMinimo;
     private int stockMaximo;
-    private CategoriaRotacion categoria;
-    private LocalDateTime fechaRegistro;
+    private Categoria categoria;
+    private CategoriaRotacion categoriaR;
+    private Proveedor proveedor;
+    private String ubicacion;
+    
+    
+    
     
     private static ArrayList<Producto> listaProductos = new ArrayList<>();
 
