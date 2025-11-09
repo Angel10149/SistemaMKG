@@ -1,4 +1,4 @@
-
+package model;
 public class MetodoPago {
     private int idMetodo;
     private String tipo;

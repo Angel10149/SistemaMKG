@@ -1,4 +1,4 @@
-
+package model;
 public class Rol {
     private int idRol;
     private String nombreRol;

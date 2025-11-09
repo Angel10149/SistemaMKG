@@ -1,10 +1,9 @@
-
+package model;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 
-public class Comprobante {
+public class ComprobantePreliminar {
     private int idComprobante;
     private Venta venta;
     private String codigo;
@@ -15,30 +14,30 @@ public class Comprobante {
     private String estado;
     private LocalDateTime expiracion;
 
-    public Comprobante() {
+    public ComprobantePreliminar() {
     }
 
-    public Comprobante(int idComprobante, Venta venta, String codigo, LocalDateTime fechaHora, Usuario vendedor, double total, String estado, LocalDateTime expiracion) {
+    public ComprobantePreliminar(int idComprobante, Venta venta, String codigo, LocalDateTime fechaHora, Usuario vendedor, List<DetalleVenta> productos, double total, String estado, LocalDateTime expiracion) {
         this.idComprobante = idComprobante;
         this.venta = venta;
         this.codigo = codigo;
         this.fechaHora = fechaHora;
         this.vendedor = vendedor;
+        this.productos = productos;
         this.total = total;
         this.estado = estado;
         this.expiracion = expiracion;
-        this.productos = new ArrayList<>();
     }
 
-    public Comprobante(Venta venta, String codigo, LocalDateTime fechaHora, Usuario vendedor, double total, String estado, LocalDateTime expiracion) {
+    public ComprobantePreliminar(Venta venta, String codigo, LocalDateTime fechaHora, Usuario vendedor, List<DetalleVenta> productos, double total, String estado, LocalDateTime expiracion) {
         this.venta = venta;
         this.codigo = codigo;
         this.fechaHora = fechaHora;
         this.vendedor = vendedor;
+        this.productos = productos;
         this.total = total;
         this.estado = estado;
         this.expiracion = expiracion;
-        this.productos = new ArrayList<>();
     }
 
     public int getIdComprobante() {
@@ -115,7 +114,6 @@ public class Comprobante {
 
     @Override
     public String toString() {
-        return "Comprobante{" + "idComprobante=" + idComprobante + ", venta=" + venta + ", codigo=" + codigo + ", fechaHora=" + fechaHora + ", vendedor=" + vendedor + ", productos=" + productos + ", total=" + total + ", estado=" + estado + ", expiracion=" + expiracion + '}';
+        return "ComprobantePreliminar{" + "idComprobante=" + idComprobante + ", venta=" + venta + ", codigo=" + codigo + ", fechaHora=" + fechaHora + ", vendedor=" + vendedor + ", productos=" + productos + ", total=" + total + ", estado=" + estado + ", expiracion=" + expiracion + '}';
     }
-    
 }

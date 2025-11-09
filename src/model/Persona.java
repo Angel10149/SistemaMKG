@@ -1,5 +1,5 @@
-
-public class Persona {
+package model;
+public abstract class Persona {
     protected int idPersona;
     protected String nombre;
     protected String apellidoPaterno;

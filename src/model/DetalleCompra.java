@@ -1,4 +1,4 @@
-
+package model;
 public class DetalleCompra {
     private int idDetalle;
     private OrdenCompra compra;

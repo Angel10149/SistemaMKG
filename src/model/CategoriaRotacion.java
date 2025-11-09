@@ -1,4 +1,4 @@
-
+package model;
 public class CategoriaRotacion {
     private String tipo;
     private double margenPorcentaje;

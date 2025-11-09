@@ -1,4 +1,4 @@
-
+package model;
 public class DetalleVenta {
     private int idDetalle;
     private Venta venta;
