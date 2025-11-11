@@ -52,6 +52,12 @@ public class VistaProducto extends javax.swing.JFrame {
 
         jLabel4.setText("Código");
 
+        txtCodigo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCodigoActionPerformed(evt);
+            }
+        });
+
         btnRegistrar.setText("Registrar");
         btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -152,7 +158,7 @@ public class VistaProducto extends javax.swing.JFrame {
             codigo= Integer.parseInt(txtCodigo.getText());
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Código"+
-                "debe ser sólo numérico","Error",JOptionPane.ERROR_MESSAGE);
+                "debe ser sólo numérico","Error",JOptionPane.ERROR_MESSAGE);?
             return;
         }
         if(codigo==0 || nombre.isEmpty()){
@@ -165,6 +171,10 @@ public class VistaProducto extends javax.swing.JFrame {
         modelo.addRow(new Object[]{codigo,nombre,tipo,stock});
         limpiarCampos();
     }//GEN-LAST:event_btnRegistrarActionPerformed
+
+    private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed
+        // TODO add your handling code here: 
+    }//GEN-LAST:event_txtCodigoActionPerformed
 
     /**
      * @param args the command line arguments
