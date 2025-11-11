@@ -1,6 +1,6 @@
 
 package view;
-import controler.ControllerProducto;
+import controller.ControllerProducto;
 import controller.ControllerTipoProducto;
 import model.Producto;
 import model.TipoProducto;
@@ -158,12 +158,12 @@ public class VistaProducto extends javax.swing.JFrame {
             codigo= Integer.parseInt(txtCodigo.getText());
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Código"+
-                "debe ser sólo numérico","Error",JOptionPane.ERROR_MESSAGE);?
+                "debe ser sólo numérico","Error",JOptionPane.ERROR_MESSAGE);
             return;
         }
         if(codigo==0 || nombre.isEmpty()){
             JOptionPane.showMessageDialog(this, "El código / "+"nombre",
-                "Error",JOptionPane.ERROR_MESSAGE);
+                "Error...",JOptionPane.ERROR_MESSAGE);
             return;
         }
 
