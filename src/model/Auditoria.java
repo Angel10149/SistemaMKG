@@ -27,4 +27,49 @@ public class Auditoria {
         this.descripcion = descripcion;
     }
 
+    public int getIdAuditoria() {
+        return idAuditoria;
+    }
+
+    public void setIdAuditoria(int idAuditoria) {
+        this.idAuditoria = idAuditoria;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public String getFechaHora() {
+        return fechaHora;
+    }
+
+    public void setFechaHora(String fechaHora) {
+        this.fechaHora = fechaHora;
+    }
+
+    public String getAccion() {
+        return accion;
+    }
+
+    public void setAccion(String accion) {
+        this.accion = accion;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    @Override
+    public String toString() {
+        return "Auditoria{" + "idAuditoria=" + idAuditoria + ", usuario=" + usuario + ", fechaHora=" + fechaHora + ", accion=" + accion + ", descripcion=" + descripcion + '}';
+    }
+
 }
