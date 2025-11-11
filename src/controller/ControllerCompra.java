@@ -3,39 +3,47 @@ package controller;
 import java.util.ArrayList;
 import model.Compra;
 import model.DetalleCompra;
+import model.Producto;
 
-public class ControllerCompra {
-    private ArrayList<Compra> listaCompras = new ArrayList<>();
-    private ControllerProducto ctrlProducto;
-
-    public ControllerCompra(ControllerProducto ctrlProducto) {
-        this.ctrlProducto = ctrlProducto;
-    }
-
-    public void registrarCompra(Compra c) {
-        listaCompras.add(c);
-
-        // Actualiza stock de cada producto comprado
-        for (DetalleCompra d : c.getDetalles()) {
-            ctrlProducto.actualizarStock(d.getProducto().getIdProducto(), d.getCantidad());
+public class ControllerCompra implements IServicio<Compra>{
+    private ArrayList<Compra> compras = new ArrayList<>();
+    @Override
+    public void registrar(Compra compra) {
+        compras.add(compra);
+        for (DetalleCompra d : compra.getDetalles()) {
+            Producto p = d.getProducto();
+            p.setStockActual(p.getStockActual() + d.getCantidad());
         }
     }
 
-    public Compra buscarCompra(String id) {
-        for (Compra c : listaCompras)
-            if (c.getIdCompra().equals(id))
+    @Override
+    public Compra buscar(int id) {
+        for (Compra c : compras)
+            if (c.getIdCompra() == id)
                 return c;
         return null;
     }
 
-    public ArrayList<Compra> listarCompras() {
-        return listaCompras;
+    @Override
+    public boolean editar(int id, Compra nuevo) {
+        for (int i = 0; i < compras.size(); i++) {
+            if (compras.get(i).getIdCompra() == id) {
+                compras.set(i, nuevo);
+                return true;
+            }
+        }
+        return false;
     }
 
-    public void cambiarEstadoCompra(String idCompra, String nuevoEstado) {
-        Compra c = buscarCompra(idCompra);
-        if (c != null) {
-            c.setEstado(nuevoEstado);
-        }
+    @Override
+    public boolean eliminar(int id) {
+        Compra c = buscar(id);
+        if (c != null) return compras.remove(c);
+        return false;
+    }
+
+    @Override
+    public ArrayList<Compra> listar() {
+        return compras;
     }
 }

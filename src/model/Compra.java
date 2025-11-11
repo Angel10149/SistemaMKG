@@ -3,7 +3,7 @@ package model;
 import java.util.ArrayList;
 
 public class Compra {
-    private String idCompra;
+    private int idCompra;
     private Proveedor proveedor;
     private String fecha;
     private ArrayList<DetalleCompra> detalles = new ArrayList<>();
@@ -13,7 +13,7 @@ public class Compra {
     public Compra() {
     }
 
-    public Compra(String idCompra, Proveedor proveedor, String fecha, double total, String estado) {
+    public Compra(int idCompra, Proveedor proveedor, String fecha, double total, String estado) {
         this.idCompra = idCompra;
         this.proveedor = proveedor;
         this.fecha = fecha;
@@ -28,11 +28,11 @@ public class Compra {
         this.estado = estado;
     }
 
-    public String getIdCompra() {
+    public int getIdCompra() {
         return idCompra;
     }
 
-    public void setIdCompra(String idCompra) {
+    public void setIdCompra(int idCompra) {
         this.idCompra = idCompra;
     }
 
