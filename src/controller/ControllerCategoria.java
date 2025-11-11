@@ -3,22 +3,36 @@ package controller;
 import java.util.ArrayList;
 import model.Categoria;
 
-public class ControllerCategoria {
+public class ControllerCategoria implements IServicio<Categoria>{
     private ArrayList<Categoria> listaCategorias = new ArrayList<>();
 
-    public void registrarCategoria(Categoria c) {
-        listaCategorias.add(c);
+    @Override
+    public void registrar(Categoria obj) {
+        listaCategorias.add(obj);
     }
 
-    public Categoria buscarCategoria(int id) {
+    @Override
+    public Categoria buscar(int id) {
         for (Categoria c : listaCategorias)
-            if (c.getIdCategoria()==id)
+            if (c.getIdCategoria() == id)
                 return c;
         return null;
     }
 
-    public boolean eliminarCategoria(int id) {
-        Categoria c = buscarCategoria(id);
+    @Override
+    public boolean editar(int id, Categoria nuevo) {
+        for (int i = 0; i < listaCategorias.size(); i++) {
+            if (listaCategorias.get(i).getIdCategoria() == id) {
+                listaCategorias.set(i, nuevo);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean eliminar(int id) {
+        Categoria c = buscar(id);
         if (c != null) {
             listaCategorias.remove(c);
             return true;
@@ -26,17 +40,8 @@ public class ControllerCategoria {
         return false;
     }
 
-    public boolean editarCategoria(Categoria categoriaEditada) {
-        for (int i = 0; i < listaCategorias.size(); i++) {
-            if (listaCategorias.get(i).getIdCategoria()==categoriaEditada.getIdCategoria()) {
-                listaCategorias.set(i, categoriaEditada);
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public ArrayList<Categoria> listarCategorias() {
+    @Override
+    public ArrayList<Categoria> listar() {
         return listaCategorias;
     }
 }

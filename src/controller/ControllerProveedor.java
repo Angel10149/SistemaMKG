@@ -13,8 +13,7 @@ public class ControllerProveedor implements IServicio<Proveedor>{
             JOptionPane.showMessageDialog(null, "No se puede registrar un proveedor nulo.");
             return;
         }
-
-        // Validar RUC (11 dígitos)
+        
         if (proveedor.getRuc().length() != 11) {
             JOptionPane.showMessageDialog(null, "El RUC debe tener 11 dígitos.");
             return;
