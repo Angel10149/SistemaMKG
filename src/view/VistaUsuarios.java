@@ -27,11 +27,11 @@ public class VistaUsuarios extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        txtID = new javax.swing.JLabel();
-        txtUsuario = new javax.swing.JLabel();
-        txtContraseña = new javax.swing.JLabel();
-        txtRol = new javax.swing.JLabel();
-        txtEstado = new javax.swing.JLabel();
+        label1 = new javax.swing.JLabel();
+        label2 = new javax.swing.JLabel();
+        label3 = new javax.swing.JLabel();
+        label4 = new javax.swing.JLabel();
+        label5 = new javax.swing.JLabel();
         txtUsuarioo = new javax.swing.JTextField();
         txtContraseñaa = new javax.swing.JTextField();
         cmbRol = new javax.swing.JComboBox<>();
@@ -47,15 +47,15 @@ public class VistaUsuarios extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Clientes"));
 
-        txtID.setText("ID");
+        label1.setText("ID");
 
-        txtUsuario.setText("Usuario");
+        label2.setText("Usuario");
 
-        txtContraseña.setText("Contraseña");
+        label3.setText("Contraseña");
 
-        txtRol.setText("Rol");
+        label4.setText("Rol");
 
-        txtEstado.setText("Estado");
+        label5.setText("Estado");
 
         txtUsuarioo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -89,13 +89,13 @@ public class VistaUsuarios extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtContraseña)
+                            .addComponent(label3)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtID)
-                                    .addComponent(txtUsuario)
-                                    .addComponent(txtRol)
-                                    .addComponent(txtEstado))
+                                    .addComponent(label1)
+                                    .addComponent(label2)
+                                    .addComponent(label4)
+                                    .addComponent(label5))
                                 .addGap(47, 47, 47)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(chkActivo)
@@ -119,22 +119,22 @@ public class VistaUsuarios extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(28, 28, 28)
-                .addComponent(txtID)
+                .addComponent(label1)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtUsuario)
+                    .addComponent(label2)
                     .addComponent(txtUsuarioo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtContraseña)
+                    .addComponent(label3)
                     .addComponent(txtContraseñaa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtRol)
+                    .addComponent(label4)
                     .addComponent(cmbRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtEstado)
+                    .addComponent(label5)
                     .addComponent(chkActivo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -236,12 +236,12 @@ public class VistaUsuarios extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JLabel txtContraseña;
+    private javax.swing.JLabel label1;
+    private javax.swing.JLabel label2;
+    private javax.swing.JLabel label3;
+    private javax.swing.JLabel label4;
+    private javax.swing.JLabel label5;
     private javax.swing.JTextField txtContraseñaa;
-    private javax.swing.JLabel txtEstado;
-    private javax.swing.JLabel txtID;
-    private javax.swing.JLabel txtRol;
-    private javax.swing.JLabel txtUsuario;
     private javax.swing.JTextField txtUsuarioo;
     // End of variables declaration//GEN-END:variables
 }

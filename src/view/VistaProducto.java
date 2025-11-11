@@ -27,23 +27,23 @@ public class VistaProducto extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        txtNombres = new javax.swing.JLabel();
-        txtDescripcion = new javax.swing.JLabel();
-        txtPrecioCosto = new javax.swing.JLabel();
+        label2 = new javax.swing.JLabel();
+        label3 = new javax.swing.JLabel();
+        label4 = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
-        txtCodigoo = new javax.swing.JLabel();
+        label1 = new javax.swing.JLabel();
         txtCodigo = new javax.swing.JTextField();
-        txtStockMin = new javax.swing.JButton();
-        txtCategoria = new javax.swing.JLabel();
-        txtProveedor = new javax.swing.JLabel();
-        txtUbicacion = new javax.swing.JLabel();
-        txtMargen = new javax.swing.JLabel();
-        txtStockMinimo = new javax.swing.JLabel();
-        txtStockMaximo = new javax.swing.JLabel();
-        txtDescripcioN = new javax.swing.JTextField();
+        txtStockMinimo = new javax.swing.JButton();
+        label5 = new javax.swing.JLabel();
+        label6 = new javax.swing.JLabel();
+        label7 = new javax.swing.JLabel();
+        label8 = new javax.swing.JLabel();
+        label9 = new javax.swing.JLabel();
+        label10 = new javax.swing.JLabel();
+        txtDescripcion = new javax.swing.JTextField();
         txtPreciocosto = new javax.swing.JTextField();
-        txtMargenn = new javax.swing.JTextField();
-        txtStockMax = new javax.swing.JTextField();
+        txtMargen = new javax.swing.JTextField();
+        txtStockMaximo = new javax.swing.JTextField();
         cmbCategoria = new javax.swing.JComboBox<>();
         cmbProveedor = new javax.swing.JComboBox<>();
         btnNuevo = new javax.swing.JButton();
@@ -59,13 +59,19 @@ public class VistaProducto extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Producto", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(0, 102, 51))); // NOI18N
 
-        txtNombres.setText("Nombre");
+        label2.setText("Nombre");
 
-        txtDescripcion.setText("Descripcion");
+        label3.setText("Descripcion");
 
-        txtPrecioCosto.setText("Precio Costo");
+        label4.setText("Precio Costo");
 
-        txtCodigoo.setText("Código");
+        txtNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNombreActionPerformed(evt);
+            }
+        });
+
+        label1.setText("Código");
 
         txtCodigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -73,23 +79,23 @@ public class VistaProducto extends javax.swing.JFrame {
             }
         });
 
-        txtStockMin.addActionListener(new java.awt.event.ActionListener() {
+        txtStockMinimo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtStockMinActionPerformed(evt);
+                txtStockMinimoActionPerformed(evt);
             }
         });
 
-        txtCategoria.setText("Categoria");
+        label5.setText("Categoria");
 
-        txtProveedor.setText("Proveedor");
+        label6.setText("Proveedor");
 
-        txtUbicacion.setText("Ubicacion");
+        label7.setText("Ubicacion");
 
-        txtMargen.setText("Margen");
+        label8.setText("Margen");
 
-        txtStockMinimo.setText("Stock Minimo");
+        label9.setText("Stock Minimo");
 
-        txtStockMaximo.setText("Stock Maximo");
+        label10.setText("Stock Maximo");
 
         txtPreciocosto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -116,19 +122,15 @@ public class VistaProducto extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(btnRegistrar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(txtCodigoo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtDescripcion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtPrecioCosto, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(txtNombres, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(label1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(label3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(label4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(26, 26, 26)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtCodigo)
@@ -136,30 +138,30 @@ public class VistaProducto extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(1, 1, 1)
                                 .addComponent(txtPreciocosto))
-                            .addComponent(txtDescripcioN)))
+                            .addComponent(txtDescripcion)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(txtProveedor)
+                        .addComponent(label6)
                         .addGap(40, 40, 40)
                         .addComponent(cmbProveedor, 0, 158, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(txtCategoria)
+                        .addComponent(label5)
                         .addGap(43, 43, 43)
                         .addComponent(cmbCategoria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(txtMargen)
+                        .addComponent(label8)
                         .addGap(53, 53, 53)
-                        .addComponent(txtMargenn))
+                        .addComponent(txtMargen))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(txtStockMinimo)
+                        .addComponent(label9)
                         .addGap(18, 18, 18)
-                        .addComponent(txtStockMin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(txtStockMinimo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(txtStockMaximo)
+                        .addComponent(label10)
                         .addGap(18, 18, 18)
-                        .addComponent(txtStockMax))
+                        .addComponent(txtStockMaximo))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtUbicacion)
+                            .addComponent(label7)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(btnNuevo)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -180,43 +182,43 @@ public class VistaProducto extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCodigoo)
+                    .addComponent(label1)
                     .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtNombres)
+                    .addComponent(label2)
                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtDescripcion)
-                    .addComponent(txtDescripcioN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(label3)
+                    .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtPrecioCosto)
+                    .addComponent(label4)
                     .addComponent(txtPreciocosto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCategoria)
+                    .addComponent(label5)
                     .addComponent(cmbCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(23, 23, 23)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtProveedor)
+                    .addComponent(label6)
                     .addComponent(cmbProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(txtUbicacion)
+                .addComponent(label7)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtMargen)
-                    .addComponent(txtMargenn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(label8)
+                    .addComponent(txtMargen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtStockMinimo)
+                    .addComponent(label9)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(txtStockMin, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtStockMinimo, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtStockMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtStockMaximo))))
+                            .addComponent(txtStockMaximo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(label10))))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnNuevo)
@@ -265,7 +267,7 @@ public class VistaProducto extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtStockMinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtStockMinActionPerformed
+    private void txtStockMinimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtStockMinimoActionPerformed
         // TODO addint  your handling code here:
         int codigo;
         String nombre = txtNombre.getText().trim();
@@ -287,7 +289,7 @@ public class VistaProducto extends javax.swing.JFrame {
         DefaultTableModel modelo = (DefaultTableModel) jtProducto.getModel();
         modelo.addRow(new Object[]{codigo,nombre,tipo,stock});
         limpiarCampos();
-    }//GEN-LAST:event_txtStockMinActionPerformed
+    }//GEN-LAST:event_txtStockMinimoActionPerformed
 
     private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed
         // TODO add your handling code here: 
@@ -350,25 +352,24 @@ public class VistaProducto extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbProveedor;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTable jtProducto;
-    private javax.swing.JLabel txtCategoria;
+    private javax.swing.JLabel label1;
+    private javax.swing.JLabel label10;
+    private javax.swing.JLabel label2;
+    private javax.swing.JLabel label3;
+    private javax.swing.JLabel label4;
+    private javax.swing.JLabel label5;
+    private javax.swing.JLabel label6;
+    private javax.swing.JLabel label7;
+    private javax.swing.JLabel label8;
+    private javax.swing.JLabel label9;
     private javax.swing.JTextField txtCodigo;
-    private javax.swing.JLabel txtCodigoo;
-    private javax.swing.JTextField txtDescripcioN;
-    private javax.swing.JLabel txtDescripcion;
-    private javax.swing.JLabel txtMargen;
-    private javax.swing.JTextField txtMargenn;
+    private javax.swing.JTextField txtDescripcion;
+    private javax.swing.JTextField txtMargen;
     private javax.swing.JTextField txtNombre;
-    private javax.swing.JLabel txtNombres;
-    private javax.swing.JLabel txtPrecioCosto;
     private javax.swing.JTextField txtPreciocosto;
-    private javax.swing.JLabel txtProveedor;
-    private javax.swing.JTextField txtStockMax;
-    private javax.swing.JLabel txtStockMaximo;
-    private javax.swing.JButton txtStockMin;
-    private javax.swing.JLabel txtStockMinimo;
-    private javax.swing.JLabel txtUbicacion;
+    private javax.swing.JTextField txtStockMaximo;
+    private javax.swing.JButton txtStockMinimo;
     // End of variables declaration//GEN-END:variables
     public void cargarTiposEnCombo(){
         cboTipo.removeAllItems();
