@@ -29,7 +29,7 @@ public class CategoriaRotacion {
 
     @Override
     public String toString() {
-        return "CategoriaRotacion{" + "tipo=" + tipo + ", margenPorcentaje=" + margenPorcentaje + '}';
+        return tipo + " (" + (margenPorcentaje * 100) + "%)";
     }
     
 }

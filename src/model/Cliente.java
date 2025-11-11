@@ -67,22 +67,7 @@ public class Cliente extends Persona{
 
     @Override
     public String toString() {
-        return "Cliente{" + "ruc=" + ruc + ", direccion=" + direccion + ", telefono=" + telefono + ", email=" + email + '}';
+        return super.toString() + ", ruc=" + ruc + ", direccion=" + direccion +
+               ", telefono=" + telefono + ", email=" + email;
     }
-
-    @Override
-    protected void registrarPersona() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    protected void editarPersona() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    protected void eliminarPersona() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
 }

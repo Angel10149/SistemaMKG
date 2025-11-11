@@ -5,30 +5,58 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import model.Cliente;
 
-public class ControllerCliente {
+public class ControllerCliente implements IServicio<Cliente>{
     private ArrayList<Cliente> clientes = new ArrayList();
-    public void agreagrCliente(Cliente c){
-        clientes.add(c);
-    }
-    public Cliente buscarClientePorId(int codigo){
-        if (codigo<0){
-            JOptionPane.showMessageDialog(null, "Ingrese un código valido");
-        }else{
-            for (Cliente cliente : clientes) {
-                if(codigo==cliente.getIdPersona()){
-                    return cliente;
-                }break;
-            }
-        }return null;
-    }
-    public void eliminarCliente(int codigo){
-        Cliente c = buscarClientePorId(codigo);
-        if(c != null){
-            clientes.remove(c);
-            JOptionPane.showMessageDialog(null, "Cliente eliminado","Mensaje",1);
-        }else{
-            JOptionPane.showMessageDialog(null, "Código no existente");
+
+    @Override
+    public void registrar(Cliente cliente) {
+        if (cliente == null) {
+            JOptionPane.showMessageDialog(null, "No se puede registrar un cliente nulo.");
+            return;
         }
+        clientes.add(cliente);
+        JOptionPane.showMessageDialog(null, "Cliente registrado correctamente.");
     }
-    
+
+    @Override
+    public Cliente buscar(int id) {
+        for (Cliente c : clientes) {
+            if (c.getIdPersona() == id) {
+                return c;
+            }
+        }
+        JOptionPane.showMessageDialog(null, "Cliente no encontrado.");
+        return null;
+    }
+
+    @Override
+    public boolean editar(int id, Cliente nuevo) {
+        for (int i = 0; i < clientes.size(); i++) {
+            if (clientes.get(i).getIdPersona() == id) {
+                clientes.set(i, nuevo);
+                JOptionPane.showMessageDialog(null, "Cliente editado correctamente.");
+                return true;
+            }
+        }
+        JOptionPane.showMessageDialog(null, "No se encontró el cliente con ID " + id);
+        return false;
+    }
+
+    @Override
+    public boolean eliminar(int id) {
+        for (Cliente c : clientes) {
+            if (c.getIdPersona() == id) {
+                clientes.remove(c);
+                JOptionPane.showMessageDialog(null, "Cliente eliminado correctamente.");
+                return true;
+            }
+        }
+        JOptionPane.showMessageDialog(null, "No se encontró el cliente con ID " + id);
+        return false;
+    }
+
+    @Override
+    public ArrayList<Cliente> listar() {
+        return clientes;
+    }
 }

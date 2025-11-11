@@ -1,42 +1,38 @@
 package model;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
+import java.util.ArrayList;
 
 public class Compra {
-    private int idCompra;
+    private String idCompra;
     private Proveedor proveedor;
-    private Usuario usuario;
-    private LocalDateTime fechaCompra;
+    private String fecha;
+    private ArrayList<DetalleCompra> detalles = new ArrayList<>();
     private double total;
-    private List<DetalleCompra> detalles;
+    private String estado;
 
     public Compra() {
     }
 
-    public Compra(int idCompra, Proveedor proveedor, Usuario usuario, LocalDateTime fechaCompra, double total) {
+    public Compra(String idCompra, Proveedor proveedor, String fecha, double total, String estado) {
         this.idCompra = idCompra;
         this.proveedor = proveedor;
-        this.usuario = usuario;
-        this.fechaCompra = fechaCompra;
+        this.fecha = fecha;
         this.total = total;
-        this.detalles= new ArrayList<>();
+        this.estado = estado;
     }
 
-    public Compra(Proveedor proveedor, Usuario usuario, LocalDateTime fechaCompra, double total) {
+    public Compra(Proveedor proveedor, String fecha, double total, String estado) {
         this.proveedor = proveedor;
-        this.usuario = usuario;
-        this.fechaCompra = fechaCompra;
+        this.fecha = fecha;
         this.total = total;
-        this.detalles= new ArrayList<>();
+        this.estado = estado;
     }
 
-    public int getIdCompra() {
+    public String getIdCompra() {
         return idCompra;
     }
 
-    public void setIdCompra(int idCompra) {
+    public void setIdCompra(String idCompra) {
         this.idCompra = idCompra;
     }
 
@@ -48,20 +44,20 @@ public class Compra {
         this.proveedor = proveedor;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public String getFecha() {
+        return fecha;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
     }
 
-    public LocalDateTime getFechaCompra() {
-        return fechaCompra;
+    public ArrayList<DetalleCompra> getDetalles() {
+        return detalles;
     }
 
-    public void setFechaCompra(LocalDateTime fechaCompra) {
-        this.fechaCompra = fechaCompra;
+    public void setDetalles(ArrayList<DetalleCompra> detalles) {
+        this.detalles = detalles;
     }
 
     public double getTotal() {
@@ -72,17 +68,20 @@ public class Compra {
         this.total = total;
     }
 
-    public List<DetalleCompra> getDetalles() {
-        return detalles;
+    public String getEstado() {
+        return estado;
     }
 
-    public void setDetalles(List<DetalleCompra> detalles) {
-        this.detalles = detalles;
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
     @Override
     public String toString() {
-        return "Compra{" + "idCompra=" + idCompra + ", proveedor=" + proveedor + ", usuario=" + usuario + ", fechaCompra=" + fechaCompra + ", total=" + total + ", detalles=" + detalles + '}';
+        return "Compra{" + "idCompra=" + idCompra + ", proveedor=" + proveedor + ", fecha=" + fecha + ", total=" + total + ", estado=" + estado + '}';
     }
-    
+    public void agregarDetalle(DetalleCompra d) {
+            detalles.add(d);
+            total += d.Subtotal();
+    }
 }
