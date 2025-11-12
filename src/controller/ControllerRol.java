@@ -16,9 +16,6 @@ public class ControllerRol {
     public void registrarRol(Rol r) {
         listaRoles.add(r);
     }
-
-    
-
     public Rol buscarRolPorNombre(String nombre) {
         for (Rol r : listaRoles) {
             if (r.getNombreRol().equalsIgnoreCase(nombre)) {
