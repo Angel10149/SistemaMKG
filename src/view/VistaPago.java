@@ -39,6 +39,7 @@ public class VistaPago extends javax.swing.JFrame {
         txtMonto1 = new javax.swing.JTextField();
         txtRecibo1 = new javax.swing.JTextField();
         txtVuelto1 = new javax.swing.JTextField();
+        txtTotal = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -62,6 +63,12 @@ public class VistaPago extends javax.swing.JFrame {
 
         cmbMetodoPago1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        txtTotal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTotalActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -80,12 +87,13 @@ public class VistaPago extends javax.swing.JFrame {
                                     .addComponent(jLabel10)
                                     .addComponent(jLabel9))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtVuelto1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtRecibo1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtMonto1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cmbMetodoPago1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnConfirmarP1)))))
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtVuelto1, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtRecibo1, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(cmbMetodoPago1, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnConfirmarP1)
+                                    .addComponent(txtMonto1, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtTotal, javax.swing.GroupLayout.Alignment.TRAILING)))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(85, 85, 85)
                         .addComponent(btnCancelar1)))
@@ -103,7 +111,9 @@ public class VistaPago extends javax.swing.JFrame {
                     .addComponent(jLabel7)
                     .addComponent(txtMonto1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel8)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
@@ -118,7 +128,7 @@ public class VistaPago extends javax.swing.JFrame {
                     .addComponent(btnConfirmarP1))
                 .addGap(18, 18, 18)
                 .addComponent(btnCancelar1)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(10, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -140,6 +150,10 @@ public class VistaPago extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txtTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTotalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTotalActionPerformed
 
     /**
      * @param args the command line arguments
@@ -189,6 +203,7 @@ public class VistaPago extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField txtMonto1;
     private javax.swing.JTextField txtRecibo1;
+    private javax.swing.JTextField txtTotal;
     private javax.swing.JTextField txtVuelto1;
     // End of variables declaration//GEN-END:variables
 }

@@ -68,12 +68,13 @@
                                       <Component id="jLabel9" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="txtVuelto1" min="-2" pref="72" max="-2" attributes="0"/>
-                                      <Component id="txtRecibo1" min="-2" pref="72" max="-2" attributes="0"/>
-                                      <Component id="txtMonto1" min="-2" pref="72" max="-2" attributes="0"/>
-                                      <Component id="cmbMetodoPago1" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="txtVuelto1" alignment="1" max="32767" attributes="0"/>
+                                      <Component id="txtRecibo1" alignment="1" max="32767" attributes="0"/>
+                                      <Component id="cmbMetodoPago1" alignment="1" max="32767" attributes="0"/>
                                       <Component id="btnConfirmarP1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txtMonto1" alignment="1" max="32767" attributes="0"/>
+                                      <Component id="txtTotal" alignment="1" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -101,7 +102,10 @@
                       <Component id="txtMonto1" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtTotal" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -119,7 +123,7 @@
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="btnCancelar1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="16" max="32767" attributes="0"/>
+                  <EmptySpace pref="10" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -185,6 +189,11 @@
         <Component class="javax.swing.JTextField" name="txtRecibo1">
         </Component>
         <Component class="javax.swing.JTextField" name="txtVuelto1">
+        </Component>
+        <Component class="javax.swing.JTextField" name="txtTotal">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtTotalActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
