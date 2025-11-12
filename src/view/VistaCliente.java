@@ -76,6 +76,12 @@ public class VistaCliente extends javax.swing.JFrame {
 
         jLabel4.setText("Email");
 
+        txtRuc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtRucActionPerformed(evt);
+            }
+        });
+
         btnNuevo.setText("Nuevo");
 
         btnGuardar.setText("Guardar");
@@ -210,6 +216,10 @@ public class VistaCliente extends javax.swing.JFrame {
     private void txtIdClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdClienteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIdClienteActionPerformed
+
+    private void txtRucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRucActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtRucActionPerformed
 
     /**
      * @param args the command line arguments
