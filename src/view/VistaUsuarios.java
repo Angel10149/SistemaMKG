@@ -5,6 +5,7 @@
 package view;
 
 import controller.ControllerRol;
+import controller.ControllerUsuario;
 import java.awt.Component;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -12,6 +13,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import model.Rol;
+import model.Usuario;
 
 /**
  *
@@ -23,21 +25,22 @@ public class VistaUsuarios extends javax.swing.JFrame {
      * Creates new form VistaUsuarios
      */
     private ControllerRol controlrol = new ControllerRol();
+    ControllerUsuario controlUsuario = new ControllerUsuario();
     public VistaUsuarios() {
         initComponents();
         cargarTiposEnCombo();
         DefaultTableCellRenderer ocultarRenderer = new DefaultTableCellRenderer() {
         @Override
         public Component getTableCellRendererComponent(JTable table, Object value,
-                                                       boolean isSelected, boolean hasFocus,
-                                                       int row, int column) {
+        boolean isSelected, boolean hasFocus,
+        int row, int column) {
             JLabel label = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-            if (column == 7 && value != null) {label.setText("•".repeat(value.toString().length()));
+            if (column == 6 && value != null) {label.setText("•".repeat(value.toString().length()));
             }
             return label;
         }
         };
-        jtUsuario.getColumnModel().getColumn(1).setCellRenderer(ocultarRenderer);
+        jtUsuario.getColumnModel().getColumn(6).setCellRenderer(ocultarRenderer);
     }
 
     /**
@@ -289,6 +292,12 @@ public class VistaUsuarios extends javax.swing.JFrame {
 
         DefaultTableModel modelo = (DefaultTableModel) jtUsuario.getModel();
         modelo.addRow(new Object[]{codigo,nombre,apellidoPaterno,apellidoMaterno,dni,codigoUsuario,pasword,rol,estado});
+        Usuario nuevo = new Usuario(codigo, nombre, apellidoPaterno, apellidoMaterno, dni, codigoUsuario, pasword, rol, estado);
+
+        controlUsuario.registrar(nuevo);
+        //DefaultTableModel modelo = (DefaultTableModel) jtUsuario.getModel();
+        modelo.addRow(new Object[]{codigo, nombre, apellidoPaterno, apellidoMaterno, dni, codigoUsuario, pasword, rol, estado});
+
         limpiarCampos();// TODO add your handling code here:
     }//GEN-LAST:event_btnRegistrarActionPerformed
 

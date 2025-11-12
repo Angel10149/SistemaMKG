@@ -3,13 +3,13 @@ public class Usuario extends Persona{
     private String codigoUsuario;
     private String password;
     private Rol rol;
-    private boolean estado;
+    private String estado;
     
     public Usuario() {
     }
 
     public Usuario(int idPersona, String nombre, String apellidoPaterno, String apellidoMaterno, String dni,
-            String codigoUsuario, String password, Rol rol, boolean estado) {
+            String codigoUsuario, String password, Rol rol, String estado) {
         super(idPersona, nombre, apellidoPaterno, apellidoMaterno, dni);
         this.codigoUsuario = codigoUsuario;
         this.password = password;
@@ -18,7 +18,7 @@ public class Usuario extends Persona{
     }
 
     public Usuario(String nombre, String apellidoPaterno, String apellidoMaterno, String dni,
-            String codigoUsuario, String password, Rol rol, boolean estado) {
+            String codigoUsuario, String password, Rol rol, String estado) {
         super(nombre, apellidoPaterno, apellidoMaterno, dni);
         this.codigoUsuario = codigoUsuario;
         this.password = password;
@@ -50,11 +50,11 @@ public class Usuario extends Persona{
         this.rol = rol;
     }
 
-    public boolean isEstado() {
+    public String isEstado() {
         return estado;
     }
 
-    public void setEstado(boolean estado) {
+    public void setEstado(String estado) {
         this.estado = estado;
     }
 
