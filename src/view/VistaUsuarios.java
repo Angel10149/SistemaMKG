@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package view;
 
 import controller.ControllerRol;
@@ -21,9 +18,6 @@ import model.Usuario;
  */
 public class VistaUsuarios extends javax.swing.JFrame {
 
-    /**
-     * Creates new form VistaUsuarios
-     */
     private ControllerRol controlrol = new ControllerRol();
     ControllerUsuario controlUsuario = new ControllerUsuario();
     public VistaUsuarios() {
