@@ -1,14 +1,14 @@
 
 package view;
-import controler.ControllerProducto;
-import controler.ControllerTipoProducto;
+//import controler.ControllerProducto;
+//import controler.ControllerTipoProducto;
 import model.Producto;
 import model.TipoProducto;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 public class VistaProducto extends javax.swing.JFrame {
-    private ControllerTipoProducto ctrlTipo = new ControllerTipoProducto();
-    private ControllerProducto ctrlProducto = new ControllerProducto();
+    //private ControllerTipoProducto ctrlTipo = new ControllerTipoProducto();
+    //private ControllerProducto ctrlProducto = new ControllerProducto();
     /**
      * Creates new form VistaProducto
      */
@@ -246,10 +246,10 @@ public class VistaProducto extends javax.swing.JFrame {
     private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
     public void cargarTiposEnCombo(){
-        cboTipo.removeAllItems();
+        /*cboTipo.removeAllItems();
         for (TipoProducto t : ctrlTipo.getTipoProductos()) {
             cboTipo.addItem(t);
-        }
+        }*/
     }
     public void inicializarTablaClientes(){
         DefaultTableModel modelo = new DefaultTableModel();

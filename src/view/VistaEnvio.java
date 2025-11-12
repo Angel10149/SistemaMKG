@@ -61,6 +61,12 @@ public class VistaEnvio extends javax.swing.JFrame {
 
         btnRegistrarEnvio.setText("Registrar Envio");
 
+        txtTransportista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTransportistaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -141,6 +147,10 @@ public class VistaEnvio extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txtTransportistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTransportistaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTransportistaActionPerformed
 
     /**
      * @param args the command line arguments
