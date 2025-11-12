@@ -1,5 +1,5 @@
 package model;
-public abstract class Persona {
+public class Persona {
     protected int idPersona;
     protected String nombre;
     protected String apellidoPaterno;
@@ -67,7 +67,4 @@ public abstract class Persona {
     public String toString() {
         return "Persona{" + "idPersona=" + idPersona + ", nombre=" + nombre + ", apellidoPaterno=" + apellidoPaterno + ", apellidoMaterno=" + apellidoMaterno + ", dni=" + dni + '}';
     }
-    protected abstract void registrarPersona();
-    protected abstract void editarPersona();
-    protected abstract void eliminarPersona();
 }

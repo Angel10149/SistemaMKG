@@ -1,51 +1,63 @@
 package model;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
 
 public class Producto {
     private int idProducto;
     private String codigo;
     private String nombre;
     private String descripcion;
+    private Categoria categoria;
+    private String marca;
     private double precioCompra;
     private double precioVenta;
+    private double margenGanancia;
     private int stockActual;
     private int stockMinimo;
     private int stockMaximo;
-    private CategoriaRotacion categoria;
-    private LocalDateTime fechaRegistro;
+    private CategoriaRotacion rotacion;
+    private int ventasAcumuladas;
+    private String ubicacion;
+    private Proveedor proveedor;
     
-    private static ArrayList<Producto> listaProductos = new ArrayList<>();
-
     public Producto() {
     }
 
-    public Producto(int idProducto, String codigo, String nombre, String descripcion, double precioCompra, double precioVenta, int stockActual, int stockMinimo, int stockMaximo, CategoriaRotacion categoria, LocalDateTime fechaRegistro) {
+    public Producto(int idProducto, String codigo, String nombre, String descripcion, Categoria categoria, String marca, double precioCompra, double precioVenta, double margenGanancia, int stockActual, int stockMinimo, int stockMaximo, CategoriaRotacion rotacion, int ventasAcumuladas, String ubicacion, Proveedor proveedor) {
         this.idProducto = idProducto;
         this.codigo = codigo;
         this.nombre = nombre;
         this.descripcion = descripcion;
+        this.categoria = categoria;
+        this.marca = marca;
         this.precioCompra = precioCompra;
         this.precioVenta = precioVenta;
+        this.margenGanancia = margenGanancia;
         this.stockActual = stockActual;
         this.stockMinimo = stockMinimo;
         this.stockMaximo = stockMaximo;
-        this.categoria = categoria;
-        this.fechaRegistro = fechaRegistro;
+        this.rotacion = rotacion;
+        this.ventasAcumuladas = ventasAcumuladas;
+        this.ubicacion = ubicacion;
+        this.proveedor = proveedor;
     }
 
-    public Producto(String codigo, String nombre, String descripcion, double precioCompra, double precioVenta, int stockActual, int stockMinimo, int stockMaximo, CategoriaRotacion categoria, LocalDateTime fechaRegistro) {
+    public Producto(String codigo, String nombre, String descripcion, Categoria categoria, String marca, double precioCompra, double precioVenta, double margenGanancia, int stockActual, int stockMinimo, int stockMaximo, CategoriaRotacion rotacion, int ventasAcumuladas, String ubicacion, Proveedor proveedor) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.descripcion = descripcion;
+        this.categoria = categoria;
+        this.marca = marca;
         this.precioCompra = precioCompra;
         this.precioVenta = precioVenta;
+        this.margenGanancia = margenGanancia;
         this.stockActual = stockActual;
         this.stockMinimo = stockMinimo;
         this.stockMaximo = stockMaximo;
-        this.categoria = categoria;
-        this.fechaRegistro = fechaRegistro;
+        this.rotacion = rotacion;
+        this.ventasAcumuladas = ventasAcumuladas;
+        this.ubicacion = ubicacion;
+        this.proveedor = proveedor;
     }
 
     public int getIdProducto() {
@@ -80,6 +92,22 @@ public class Producto {
         this.descripcion = descripcion;
     }
 
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
     public double getPrecioCompra() {
         return precioCompra;
     }
@@ -94,6 +122,14 @@ public class Producto {
 
     public void setPrecioVenta(double precioVenta) {
         this.precioVenta = precioVenta;
+    }
+
+    public double getMargenGanancia() {
+        return margenGanancia;
+    }
+
+    public void setMargenGanancia(double margenGanancia) {
+        this.margenGanancia = margenGanancia;
     }
 
     public int getStockActual() {
@@ -120,90 +156,58 @@ public class Producto {
         this.stockMaximo = stockMaximo;
     }
 
-    public CategoriaRotacion getCategoria() {
-        return categoria;
+    public CategoriaRotacion getRotacion() {
+        return rotacion;
     }
 
-    public void setCategoria(CategoriaRotacion categoria) {
-        this.categoria = categoria;
+    public void setRotacion(CategoriaRotacion rotacion) {
+        this.rotacion = rotacion;
     }
 
-    public LocalDateTime getFechaRegistro() {
-        return fechaRegistro;
+    public int getVentasAcumuladas() {
+        return ventasAcumuladas;
     }
 
-    public void setFechaRegistro(LocalDateTime fechaRegistro) {
-        this.fechaRegistro = fechaRegistro;
+    public void setVentasAcumuladas(int ventasAcumuladas) {
+        this.ventasAcumuladas = ventasAcumuladas;
     }
 
+    public String getUbicacion() {
+        return ubicacion;
+    }
+
+    public void setUbicacion(String ubicacion) {
+        this.ubicacion = ubicacion;
+    }
+
+    public Proveedor getProveedor() {
+        return proveedor;
+    }
+
+    public void setProveedor(Proveedor proveedor) {
+        this.proveedor = proveedor;
+    }
+    
     @Override
     public String toString() {
-        return "Producto{" +
-                "idProducto=" + idProducto +
-                ", codigo='" + codigo + '\'' +
-                ", nombre='" + nombre + '\'' +
-                ", precioVenta=" + precioVenta +
-                ", stockActual=" + stockActual +
-                ", categoria=" + categoria +
-                '}';
+        return nombre + " (" + idProducto + ")";
+    }
+    public double calcularPrecioVenta() {
+        if (margenGanancia >= 1) margenGanancia /= 100;
+        return precioCompra / (1 - margenGanancia);
+    }
+    public void actualizarPrecioVenta() {
+        this.precioVenta = calcularPrecioVenta();
     }
     public void aumentarStock(int cantidad) {
         this.stockActual += cantidad;
-        System.out.println("Stock aumentado. Nuevo stock: " + this.stockActual);
     }
 
     public void disminuirStock(int cantidad) {
         if (cantidad <= this.stockActual) {
             this.stockActual -= cantidad;
-            System.out.println("Stock reducido. Nuevo stock: " + this.stockActual);
         } else {
-            System.out.println("No hay suficiente stock disponible.");
+            JOptionPane.showMessageDialog(null, "No hay suficiente stock disponible.");
         }
-    }
-
-    public boolean verificarStockMinimo() {
-        return this.stockActual <= this.stockMinimo;
-    }
-
-    public String mostrarInfo() {
-        return "Código: " + codigo + " | Nombre: " + nombre + 
-               " | Stock: " + stockActual + " | Precio Venta: S/." + precioVenta;
-    }
-    public static void registrarProducto(Producto p) {
-        listaProductos.add(p);
-        System.out.println("Producto registrado correctamente: " + p.getNombre());
-    }
-
-    public static void listarProductos() {
-        if (listaProductos.isEmpty()) {
-            System.out.println("No existen productos registrados.");
-        } else {
-            System.out.println("Lista de productos registrados:");
-            for (Producto p : listaProductos) {
-                System.out.println(p.mostrarInfo());
-            }
-        }
-    }
-
-    public static Producto buscarProductoPorCodigo(String codigo) {
-        for (Producto p : listaProductos) {
-            if (p.getCodigo().equalsIgnoreCase(codigo)) {
-                return p;
-            }
-        }
-        return null;
-    }
-
-    public static void eliminarProducto(String codigo) {
-        Producto encontrado = buscarProductoPorCodigo(codigo);
-        if (encontrado != null) {
-            listaProductos.remove(encontrado);
-            System.out.println("Producto eliminado correctamente: " + codigo);
-        } else {
-            System.out.println(" Producto no encontrado.");
-        }
-    }
-    public void imprimirProducto() {
-        System.out.println(this.toString());
     }
 }

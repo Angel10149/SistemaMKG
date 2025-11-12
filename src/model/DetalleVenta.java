@@ -1,30 +1,29 @@
 package model;
 public class DetalleVenta {
     private int idDetalle;
-    private Venta venta;
     private Producto producto;
     private int cantidad;
     private double precioUnitario;
     private double subtotal;
-
+    private double descuento;
     public DetalleVenta() {
     }
 
-    public DetalleVenta(int idDetalle, Venta venta, Producto producto, int cantidad, double precioUnitario, double subtotal) {
+    public DetalleVenta(int idDetalle, Producto producto, int cantidad, double precioUnitario, double subtotal, double descuento) {
         this.idDetalle = idDetalle;
-        this.venta = venta;
         this.producto = producto;
         this.cantidad = cantidad;
         this.precioUnitario = precioUnitario;
         this.subtotal = subtotal;
+        this.descuento = descuento;
     }
 
-    public DetalleVenta(Venta venta, Producto producto, int cantidad, double precioUnitario, double subtotal) {
-        this.venta = venta;
+    public DetalleVenta(Producto producto, int cantidad, double precioUnitario, double subtotal, double descuento) {
         this.producto = producto;
         this.cantidad = cantidad;
         this.precioUnitario = precioUnitario;
         this.subtotal = subtotal;
+        this.descuento = descuento;
     }
 
     public int getIdDetalle() {
@@ -33,14 +32,6 @@ public class DetalleVenta {
 
     public void setIdDetalle(int idDetalle) {
         this.idDetalle = idDetalle;
-    }
-
-    public Venta getVenta() {
-        return venta;
-    }
-
-    public void setVenta(Venta venta) {
-        this.venta = venta;
     }
 
     public Producto getProducto() {
@@ -75,9 +66,20 @@ public class DetalleVenta {
         this.subtotal = subtotal;
     }
 
+    public double getDescuento() {
+        return descuento;
+    }
+
+    public void setDescuento(double descuento) {
+        this.descuento = descuento;
+    }
+
     @Override
     public String toString() {
-        return "DetalleVenta{" + "idDetalle=" + idDetalle + ", venta=" + venta + ", producto=" + producto + ", cantidad=" + cantidad + ", precioUnitario=" + precioUnitario + ", subtotal=" + subtotal + '}';
+        return "DetalleVenta{" + "idDetalle=" + idDetalle + ", producto=" + producto + ", cantidad=" + cantidad + ", precioUnitario=" + precioUnitario + ", subtotal=" + subtotal + ", descuento=" + descuento + '}';
+    }
+    public void recalcularSubtotal() {
+        this.subtotal = cantidad * precioUnitario;
     }
     
 }
