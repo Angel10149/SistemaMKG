@@ -50,7 +50,7 @@ public class Usuario extends Persona{
         this.rol = rol;
     }
 
-    public String isEstado() {
+    public String getEstado() {
         return estado;
     }
 

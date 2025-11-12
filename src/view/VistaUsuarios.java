@@ -29,6 +29,7 @@ public class VistaUsuarios extends javax.swing.JFrame {
     public VistaUsuarios() {
         initComponents();
         cargarTiposEnCombo();
+        cargarTablaUsuarios();
         DefaultTableCellRenderer ocultarRenderer = new DefaultTableCellRenderer() {
         @Override
         public Component getTableCellRendererComponent(JTable table, Object value,
@@ -296,9 +297,11 @@ public class VistaUsuarios extends javax.swing.JFrame {
 
         controlUsuario.registrar(nuevo);
         //DefaultTableModel modelo = (DefaultTableModel) jtUsuario.getModel();
-        modelo.addRow(new Object[]{codigo, nombre, apellidoPaterno, apellidoMaterno, dni, codigoUsuario, pasword, rol, estado});
+        //modelo.addRow(new Object[]{codigo, nombre, apellidoPaterno, apellidoMaterno, dni, codigoUsuario, pasword, rol, estado});
 
-        limpiarCampos();// TODO add your handling code here:
+        cargarTablaUsuarios();
+        limpiarCampos();
+// TODO add your handling code here:
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     /**
@@ -378,5 +381,24 @@ public class VistaUsuarios extends javax.swing.JFrame {
         txtClave.setText("");
         cboRol.setSelectedIndex(-1);
         txtEstado.setText("");
+    }
+    private void cargarTablaUsuarios() {
+        
+    DefaultTableModel modelo = (DefaultTableModel) jtUsuario.getModel();
+    modelo.setRowCount(0);
+
+    for (Usuario u : controlUsuario.listar()) {
+        modelo.addRow(new Object[]{
+            u.getIdPersona(),
+            u.getNombre(),
+            u.getApellidoPaterno(),
+            u.getApellidoMaterno(),
+            u.getDni(),
+            u.getCodigoUsuario(),
+            u.getPassword(),
+            u.getRol().getNombreRol(),
+            u.getEstado()
+        });
+    }
     }
 }

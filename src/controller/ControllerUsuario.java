@@ -2,11 +2,40 @@ package controller;
 
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import model.Rol;
 import model.Usuario;
 
 public class ControllerUsuario implements IServicio<Usuario>{
     private ArrayList<Usuario> usuarios = new ArrayList<>();
-@Override
+    public ControllerUsuario(){
+        usuarios.add(new Usuario(1,"Carlos","Pérez","Ramírez","12345678",
+        "admin01","admin123",
+        new Rol(1, "Administrador", "Acceso completo al sistema"),
+        "Activo"
+        ));
+
+    usuarios.add(new Usuario(2,"María","Gómez","Torres","23456789","vend01",
+        "venta123",
+        new Rol(2, "Vendedor", "Gestiona ventas y clientes"),"Activo"));
+
+    usuarios.add(new Usuario(3,"Luis","Fernández","López","34567890","caja01",
+        "caja123",
+        new Rol(3, "Cajero", "Control de caja y pagos"),"Activo"
+        ));
+
+    usuarios.add(new Usuario(
+        4,
+        "Ana",
+        "Ruiz",
+        "Martínez",
+        "45678901",
+        "almac01",
+        "almac123",
+        new Rol(4, "Almacenero", "Control de inventario y productos"),
+        "Activo"
+    ));
+    }
+    @Override
     public void registrar(Usuario usuario) {
         if (usuario == null) {
             JOptionPane.showMessageDialog(null, "No se puede registrar un usuario nulo.");
