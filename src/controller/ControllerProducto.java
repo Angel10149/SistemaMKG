@@ -1,79 +1,108 @@
 
 package controller;
+import conexion.ConexionBD;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
+import model.Categoria;
 import model.Producto;
-public class ControllerProducto implements IServicio<Producto>{
-    private ArrayList<Producto> productos = new ArrayList();
-    @Override
-    public void registrar(Producto p) {
-        if (p == null) {
-            JOptionPane.showMessageDialog(null, "No se puede registrar un producto nulo.");
-            return;
-        }
+import model.TipoProducto;
+public class ControllerProducto{
+   public List<Producto> listarProductos() {
+        List<Producto> lista = new ArrayList<>();
+        /*String sql = "SELECT p.codigo, p.nombre AS nombreProducto, p.precio, p.stock, "
+                   + "t.idTipo, t.nombre AS nombreTipo"
+                   + " FROM producto p "
+                   + "INNER JOIN TipoProducto t ON p.idTipo = t.idTipo"; //CORREGIR AQUÍ: nombres reales de tabla/campos*/
+        String sql = "SELECT p.codigo, p.nombre AS nombreProducto, p.precio, p.stock, "
+                   + "t.idTipo, t.nombre AS nombreTipo "
+                   + "FROM producto p "
+                   + "INNER JOIN TipoProducto t ON p.tipo = t.idTipo";
 
-        if (p.getCodigo() == null || p.getCodigo().isEmpty()) {
-            p.setCodigo("PROD-" + (productos.size() + 1));
-        }
+        try (Connection cn = ConexionBD.getConnection();
+             PreparedStatement ps = cn.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
 
-        productos.add(p);
-        JOptionPane.showMessageDialog(null, "Producto registrado correctamente.");
-    }
+            while (rs.next()) {
+                Producto p = new Producto();
+                p.setCodigo(rs.getString("codigo"));  
+                p.setNombre(rs.getString("nombreProducto"));    
+                p.setPrecioCompra(rs.getDouble("precio"));    
+                p.setStockActual(rs.getInt("stock"));          
 
-    @Override
-    public Producto buscar(int id) {
-        for (Producto p : productos)
-            if (p.getIdProducto() == id)
-                return p;
-        JOptionPane.showMessageDialog(null, "Producto no encontrado.");
-        return null;
-    }
+                Categoria tp = new Categoria();
+                tp.setIdCategoria(rs.getInt("idTipo"));      //CORREGIR AQUÍ
+                tp.setNombre(rs.getString("nombreTipo"));   //CORREGIR AQUÍ
 
-    @Override
-    public boolean editar(int id, Producto nuevo) {
-        for (int i = 0; i < productos.size(); i++) {
-            if (productos.get(i).getIdProducto() == id) {
-                productos.set(i, nuevo);
-                JOptionPane.showMessageDialog(null, "Producto actualizado correctamente.");
-                return true;
+                p.setCategoria(tp);
+                lista.add(p);
             }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-        JOptionPane.showMessageDialog(null, "Producto no encontrado.");
+        return lista;
+    }
+
+    public boolean registrarProducto(Producto p) {
+        String sql = "INSERT INTO producto (nombre, precio, stock, tipo) "
+                   + "VALUES (?, ?, ?, ?)"; //CORREGIR AQUÍ
+        try (Connection cn = ConexionBD.getConnection();
+             PreparedStatement ps = cn.prepareStatement(sql)) {
+
+            ps.setString(1, p.getNombre());
+            ps.setDouble(2, p.getPrecioCompra());
+            ps.setInt(3, (int) p.getStockActual());
+            ps.setInt(4, p.getCategoria().getIdCategoria());
+
+            int filas = ps.executeUpdate();
+            return filas > 0;
+
+        } catch (SQLException e) {
+            e.printStackTrace(); // podrías manejar mejor el error
+        }
         return false;
     }
 
-    @Override
-    public boolean eliminar(int id) {
-        for (Producto p : productos) {
-            if (p.getIdProducto() == id) {
-                productos.remove(p);
-                JOptionPane.showMessageDialog(null, "Producto eliminado correctamente.");
-                return true;
-            }
+    public boolean actualizarProducto(Producto p) {
+        String sql = "UPDATE producto "
+                   + "SET nombre = ?, precio = ?, stock = ?, tipo = ? "
+                   + "WHERE codigo = ?";  
+        try (Connection cn = ConexionBD.getConnection();
+             PreparedStatement ps = cn.prepareStatement(sql)) {
+
+            ps.setString(1, p.getNombre());
+            ps.setDouble(2, p.getPrecioCompra());
+            ps.setInt(3, (int) p.getStockActual());
+            ps.setInt(4, p.getCategoria().getIdCategoria());
+            ps.setString(5, p.getCodigo());
+
+            int filas = ps.executeUpdate();
+            return filas > 0;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-        JOptionPane.showMessageDialog(null, "Producto no encontrado.");
         return false;
     }
 
-    @Override
-    public ArrayList<Producto> listar() {
-        return productos;
-    }
-    
-    public void actualizarStock(int idProducto, int cantidad) {
-        Producto p = buscar(idProducto);
-        if (p != null) {
-            p.setStockActual(p.getStockActual()+ cantidad);
-            verificarStock(p);
-        }
-    }
+    public boolean eliminarProducto(int idProducto) {
+        String sql = "DELETE FROM producto WHERE codigo = ?"; //CORREGIR AQUÍ
+        try (Connection cn = ConexionBD.getConnection();
+             PreparedStatement ps = cn.prepareStatement(sql)) {
 
-    public void verificarStock(Producto p) {
-        if (p.getStockActual()<= p.getStockMinimo()) {
-            JOptionPane.showMessageDialog(null, "Producto con stock bajo: " + p.getNombre());
-        } else if (p.getStockActual()>= p.getStockMaximo()) {
-            JOptionPane.showMessageDialog(null, "Producto con stock alto: " + p.getNombre());
+            ps.setInt(1, idProducto);
+            int filas = ps.executeUpdate();
+            return filas > 0;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+        return false;
     }
 }
 

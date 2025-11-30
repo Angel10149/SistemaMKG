@@ -3,7 +3,6 @@ package model;
 import javax.swing.JOptionPane;
 
 public class Producto {
-    private int idProducto;
     private String codigo;
     private String nombre;
     private String descripcion;
@@ -15,16 +14,15 @@ public class Producto {
     private int stockActual;
     private int stockMinimo;
     private int stockMaximo;
-    private CategoriaRotacion rotacion;
+    /*private CategoriaRotacion rotacion;
     private int ventasAcumuladas;
     private String ubicacion;
-    private Proveedor proveedor;
+    private Proveedor proveedor;*/
     
     public Producto() {
     }
 
-    public Producto(int idProducto, String codigo, String nombre, String descripcion, Categoria categoria, String marca, double precioCompra, double precioVenta, double margenGanancia, int stockActual, int stockMinimo, int stockMaximo, CategoriaRotacion rotacion, int ventasAcumuladas, String ubicacion, Proveedor proveedor) {
-        this.idProducto = idProducto;
+    public Producto(String codigo, String nombre, String descripcion, Categoria categoria, String marca, double precioCompra, double precioVenta, double margenGanancia, int stockActual, int stockMinimo, int stockMaximo) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -36,14 +34,9 @@ public class Producto {
         this.stockActual = stockActual;
         this.stockMinimo = stockMinimo;
         this.stockMaximo = stockMaximo;
-        this.rotacion = rotacion;
-        this.ventasAcumuladas = ventasAcumuladas;
-        this.ubicacion = ubicacion;
-        this.proveedor = proveedor;
     }
 
-    public Producto(String codigo, String nombre, String descripcion, Categoria categoria, String marca, double precioCompra, double precioVenta, double margenGanancia, int stockActual, int stockMinimo, int stockMaximo, CategoriaRotacion rotacion, int ventasAcumuladas, String ubicacion, Proveedor proveedor) {
-        this.codigo = codigo;
+    public Producto(String nombre, String descripcion, Categoria categoria, String marca, double precioCompra, double precioVenta, double margenGanancia, int stockActual, int stockMinimo, int stockMaximo) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.categoria = categoria;
@@ -54,18 +47,6 @@ public class Producto {
         this.stockActual = stockActual;
         this.stockMinimo = stockMinimo;
         this.stockMaximo = stockMaximo;
-        this.rotacion = rotacion;
-        this.ventasAcumuladas = ventasAcumuladas;
-        this.ubicacion = ubicacion;
-        this.proveedor = proveedor;
-    }
-
-    public int getIdProducto() {
-        return idProducto;
-    }
-
-    public void setIdProducto(int idProducto) {
-        this.idProducto = idProducto;
     }
 
     public String getCodigo() {
@@ -156,41 +137,9 @@ public class Producto {
         this.stockMaximo = stockMaximo;
     }
 
-    public CategoriaRotacion getRotacion() {
-        return rotacion;
-    }
-
-    public void setRotacion(CategoriaRotacion rotacion) {
-        this.rotacion = rotacion;
-    }
-
-    public int getVentasAcumuladas() {
-        return ventasAcumuladas;
-    }
-
-    public void setVentasAcumuladas(int ventasAcumuladas) {
-        this.ventasAcumuladas = ventasAcumuladas;
-    }
-
-    public String getUbicacion() {
-        return ubicacion;
-    }
-
-    public void setUbicacion(String ubicacion) {
-        this.ubicacion = ubicacion;
-    }
-
-    public Proveedor getProveedor() {
-        return proveedor;
-    }
-
-    public void setProveedor(Proveedor proveedor) {
-        this.proveedor = proveedor;
-    }
-    
     @Override
     public String toString() {
-        return nombre + " (" + idProducto + ")";
+        return "Producto{" + "codigo=" + codigo + ", nombre=" + nombre + ", descripcion=" + descripcion + ", categoria=" + categoria + ", marca=" + marca + ", precioCompra=" + precioCompra + ", precioVenta=" + precioVenta + ", margenGanancia=" + margenGanancia + ", stockActual=" + stockActual + ", stockMinimo=" + stockMinimo + ", stockMaximo=" + stockMaximo + '}';
     }
     public double calcularPrecioVenta() {
         if (margenGanancia >= 1) margenGanancia /= 100;
