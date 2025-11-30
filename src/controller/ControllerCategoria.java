@@ -1,47 +1,33 @@
 package controller;
 
+import conexion.ConexionBD;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import model.Categoria;
 
-public class ControllerCategoria implements IServicio<Categoria>{
-    private ArrayList<Categoria> listaCategorias = new ArrayList<>();
+public class ControllerCategoria{
+    public List<Categoria> listarTipos() {
+        List<Categoria> lista = new ArrayList<>();
+        String sql = "SELECT idCategoria, nombre FROM Categoria"; 
 
-    @Override
-    public void registrar(Categoria obj) {
-        listaCategorias.add(obj);
-    }
+        try (Connection cn = ConexionBD.getConnection();
+             PreparedStatement ps = cn.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
 
-    @Override
-    public Categoria buscar(int id) {
-        for (Categoria c : listaCategorias)
-            if (c.getIdCategoria() == id)
-                return c;
-        return null;
-    }
-
-    @Override
-    public boolean editar(int id, Categoria nuevo) {
-        for (int i = 0; i < listaCategorias.size(); i++) {
-            if (listaCategorias.get(i).getIdCategoria() == id) {
-                listaCategorias.set(i, nuevo);
-                return true;
+            while (rs.next()) {
+                Categoria tp = new Categoria();
+                tp.setIdCategoria(rs.getInt("idCategoria"));         
+                tp.setNombre(rs.getString("nombre"));  
+                lista.add(tp);
             }
-        }
-        return false;
-    }
 
-    @Override
-    public boolean eliminar(int id) {
-        Categoria c = buscar(id);
-        if (c != null) {
-            listaCategorias.remove(c);
-            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-        return false;
-    }
-
-    @Override
-    public ArrayList<Categoria> listar() {
-        return listaCategorias;
+        return lista;
     }
 }

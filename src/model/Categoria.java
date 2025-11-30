@@ -3,20 +3,14 @@ package model;
 public class Categoria {
     private int idCategoria;
     private String nombre;
-    private String descripcion;
+    //private String descripcion;
 
     public Categoria() {
     }
 
-    public Categoria(int idCategoria, String nombre, String descripcion) {
+    public Categoria(int idCategoria, String nombre) {
         this.idCategoria = idCategoria;
         this.nombre = nombre;
-        this.descripcion = descripcion;
-    }
-
-    public Categoria(String nombre, String descripcion) {
-        this.nombre = nombre;
-        this.descripcion = descripcion;
     }
 
     public int getIdCategoria() {
@@ -35,17 +29,11 @@ public class Categoria {
         this.nombre = nombre;
     }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
     @Override
     public String toString() {
-        return nombre;
+        return "Categoria{" + "idCategoria=" + idCategoria + ", nombre=" + nombre + '}';
     }
+
+    
     
 }
