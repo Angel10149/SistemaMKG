@@ -4,17 +4,13 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 public class ConexionBD {
-    private static final String SERVIDOR = "DESKTOP-BSJMFK6\\SQLDEVELOPER";
+    private static final String SERVIDOR = "localhost"; //
     private static String BD = "BDSistemaMKG";
-    private static final String url = 
-    "jdbc:sqlserver://"+SERVIDOR +
-    ";databaseName="+BD +
-    ";encrypt=false;" +
-    "trustServerCertificate=true;" +
-    "user=sa;" + 
-    "password=Inge1408+;"; /*String URL = "jdbc:sqlserver://" + SERVIDOR
-            + ";databaseName=" + BD;*/
     
+    private static final String URL = "jdbc:sqlserver://"
+            +SERVIDOR+ ";databaseName="+BD+
+            ";integratedSecurity=true" +
+            ";encrypt=true" + ";trustServerCertificate=true"; 
     private static Connection conexion = null;
     public static Connection getConnection(){
         /*if (conexion==null){
@@ -36,7 +32,7 @@ public class ConexionBD {
                 // Cargar el driver (solo la primera vez)
                 Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 
-                conexion = DriverManager.getConnection(url);
+                conexion = DriverManager.getConnection(URL);
 
                 System.out.println("Conexión exitosa a " + BD);
             }
