@@ -29,10 +29,11 @@ public class VistaProducto extends javax.swing.JFrame {
         ctrlProducto = new ControllerProducto();
         ctrlTipo = new ControllerCategoria();
         
-        configurarTabla();
-        cargarTiposProductoEnCombo();
-        listarProductos();
-        //cargarProductoEnTabla();
+        inicializarTablaProductos(); 
+        configurarTabla();               
+        cargarTiposProductoEnCombo();   
+        cargarProductos();
+  
     }
 
     /**
@@ -56,7 +57,11 @@ public class VistaProducto extends javax.swing.JFrame {
         btnRegistrar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         txtId = new javax.swing.JTextField();
-        txtPrecio = new javax.swing.JTextField();
+        txtMarca = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        txtDescripcion = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtProducto = new javax.swing.JTable();
 
@@ -94,6 +99,12 @@ public class VistaProducto extends javax.swing.JFrame {
             }
         });
 
+        jLabel6.setText("Descripción");
+
+        jLabel7.setText("Marca");
+
+        jLabel8.setText("jLabel8");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -101,22 +112,23 @@ public class VistaProducto extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(cboTipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(spStock)
                             .addComponent(txtCodigo)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(1, 1, 1)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtPrecio)
-                                    .addComponent(txtNombre)))))
+                                .addComponent(txtNombre))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -129,6 +141,20 @@ public class VistaProducto extends javax.swing.JFrame {
                                 .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(1, 1, 1)
+                .addComponent(txtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(88, 88, 88)
+                    .addComponent(txtDescripcion)
+                    .addGap(16, 16, 16)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -140,8 +166,14 @@ public class VistaProducto extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addComponent(jLabel8)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel6)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
@@ -157,14 +189,19 @@ public class VistaProducto extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnRegistrar)
                 .addGap(93, 93, 93))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(158, 158, 158)
+                    .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(214, Short.MAX_VALUE)))
         );
 
         jtProducto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Código", "Nombre", "Tipo", "Stock"
+                "Código", "Nombre", "Descripción", "Categoria", "Marca", "PrecioCompra", "PrecioVenta", "margenGanancia", "StockActual", "StockMinimo", "StockMaximo"
             }
         ));
         jScrollPane1.setViewportView(jtProducto);
@@ -177,18 +214,18 @@ public class VistaProducto extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 973, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 177, Short.MAX_VALUE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -197,30 +234,53 @@ public class VistaProducto extends javax.swing.JFrame {
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
          if (!validarCampos()) {
-            return;
+        return;
         }
-        String nombre = txtNombre.getText().trim();
-        double precio = Double.parseDouble(txtPrecio.getText().trim());
-        int stock = Integer.parseInt(spStock.getValue().toString().trim());
-        Categoria tipo = (Categoria) cboTipo.getSelectedItem();
 
+        String nombre = txtNombre.getText().trim();
+        String descripcion = txtMarca.getText().trim();
+        String marca = txtMarca.getText().trim();
+
+        double precioCompra = Double.parseDouble(txtPrecioCompra.getText().trim());
+        double margen = Double.parseDouble(txtMargen.getText().trim()); // % de ganancia
+
+        int stockMin = Integer.parseInt(txtStockMinimo.getText().trim());
+        int stockMax = Integer.parseInt(txtStockMaximo.getText().trim());
+
+        Categoria categoria = (Categoria) cboCategoria.getSelectedItem();
+
+        // Calcular AUTOMÁTICAMENTE el precio de venta
+        double precioVenta = precioCompra + (precioCompra * margen / 100);
+
+        // Crear el producto
         Producto p = new Producto();
         p.setNombre(nombre);
-        p.setPrecioCompra(precio);
-        p.setStockActual(stock);
-        p.setCategoria(tipo);
+        p.setDescripcion(descripcion);
+        p.setMarca(marca);
+        p.setCategoria(categoria);
+
+        p.setPrecioCompra(precioCompra);
+        p.setPrecioVenta(precioVenta);  // calculado
+        p.setMargenGanancia(margen);
+
+        p.setStockActual(0);            // SIEMPRE inicia en 0
+        p.setStockMinimo(stockMin);
+        p.setStockMaximo(stockMax);
 
         boolean ok = ctrlProducto.registrarProducto(p);
+
         if (ok) {
-             try {
-                 JOptionPane.showMessageDialog(this, "Producto registrado correctamente.");
-                 listarProductos();
-                 limpiarCampos();
-             } catch (SQLException ex) {
-                 Logger.getLogger(VistaProducto.class.getName()).log(Level.SEVERE, null, ex);
-             }
+            JOptionPane.showMessageDialog(this, "Producto registrado correctamente.");
+            try {
+                listarProductos();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+            limpiarCampos();
         } else {
-            JOptionPane.showMessageDialog(this, "Error al registrar producto.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this,
+                    "Error al registrar producto.",
+                    "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
@@ -280,14 +340,18 @@ public class VistaProducto extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jtProducto;
     private javax.swing.JSpinner spStock;
     private javax.swing.JTextField txtCodigo;
+    private javax.swing.JTextField txtDescripcion;
     private javax.swing.JTextField txtId;
+    private javax.swing.JTextField txtMarca;
     private javax.swing.JTextField txtNombre;
-    private javax.swing.JTextField txtPrecio;
     // End of variables declaration//GEN-END:variables
     private void cargarTiposProductoEnCombo() throws SQLException {
         cboTipo.removeAllItems();
@@ -296,13 +360,22 @@ public class VistaProducto extends javax.swing.JFrame {
             cboTipo.addItem(tp); // toString() en TipoProducto
         }
     }
-    public void inicializarTablaClientes(){
+    public void inicializarTablaProductos() {
         DefaultTableModel modelo = new DefaultTableModel();
         modelo.addColumn("CÓDIGO");
         modelo.addColumn("NOMBRE");
-        modelo.addColumn("TIPO");
-        modelo.addColumn("STOCK");
-        //jtCliente.setModel(modelo);
+        modelo.addColumn("DESCRIPCIÓN");
+        modelo.addColumn("CATEGORÍA");
+        modelo.addColumn("MARCA");
+        modelo.addColumn("PRECIO COMPRA");
+        modelo.addColumn("PRECIO VENTA");
+        modelo.addColumn("MARGEN");
+        modelo.addColumn("STOCK ACTUAL");
+        modelo.addColumn("STOCK MÍNIMO");
+        modelo.addColumn("STOCK MÁXIMO");
+
+        jtProducto.setModel(modelo);
+        modeloTabla = modelo;
     }
     public void limpiarCampos(){
         //txtCodigo.setText("");
@@ -324,20 +397,28 @@ public class VistaProducto extends javax.swing.JFrame {
     private void listarProductos() throws SQLException {
         limpiarTabla();
         List<Producto> lista = ctrlProducto.listarProductos();
+
         for (Producto p : lista) {
+
             modeloTabla.addRow(new Object[]{
                 p.getCodigo(),
                 p.getNombre(),
+                p.getDescripcion(),
+                p.getCategoria().getNombre(),
+                p.getMarca(),
                 p.getPrecioCompra(),
+                p.getPrecioVenta(),
+                p.getMargenGanancia(),
                 p.getStockActual(),
-                p.getCategoria().getNombre()
+                p.getStockMinimo(),
+                p.getStockMaximo()
             });
         }
     }
     
     private boolean validarCampos() {
         if (txtNombre.getText().trim().isEmpty()
-                || txtPrecio.getText().trim().isEmpty()
+                || txtMarca.getText().trim().isEmpty()
                 || spStock.getValue().toString().trim().isEmpty()
                 || cboTipo.getSelectedIndex() == -1) {
             JOptionPane.showMessageDialog(this,
@@ -347,7 +428,7 @@ public class VistaProducto extends javax.swing.JFrame {
             return false;
         }
         try {
-            Double.parseDouble(txtPrecio.getText().trim());
+            Double.parseDouble(txtMarca.getText().trim());
             Integer.parseInt(spStock.getValue().toString().trim());
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this,
@@ -357,5 +438,13 @@ public class VistaProducto extends javax.swing.JFrame {
             return false;
         }
         return true;
+    }
+  
+    private void cargarProductos() {
+        try {
+            listarProductos();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }
 }
