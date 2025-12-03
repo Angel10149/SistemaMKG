@@ -7,6 +7,7 @@ package view;
 import controller.ControllerRol;
 import controller.ControllerUsuario;
 import java.awt.Component;
+import java.util.List;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -15,10 +16,6 @@ import javax.swing.table.DefaultTableModel;
 import model.Rol;
 import model.Usuario;
 
-/**
- *
- * @author KEVIN SANGAY
- */
 public class VistaUsuarios extends javax.swing.JFrame {
 
     /**
@@ -28,7 +25,9 @@ public class VistaUsuarios extends javax.swing.JFrame {
     ControllerUsuario controlUsuario = new ControllerUsuario();
     public VistaUsuarios() {
         initComponents();
-        cargarTiposEnCombo();
+        controlrol = new ControllerRol();
+        controlUsuario = new ControllerUsuario();
+        cargarRoles();
         cargarTablaUsuarios();
         DefaultTableCellRenderer ocultarRenderer = new DefaultTableCellRenderer() {
         @Override
@@ -114,8 +113,18 @@ public class VistaUsuarios extends javax.swing.JFrame {
         });
 
         btnEditar.setText("Editar");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
 
         btnEliminar.setText("Desactivar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -267,42 +276,137 @@ public class VistaUsuarios extends javax.swing.JFrame {
     }//GEN-LAST:event_txtApellidoPaternoActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        // TODO addint  your handling code here:
-        int codigo;
         String nombre = txtNombre.getText().trim();
         String apellidoPaterno = txtApellidoPaterno.getText().trim();
         String apellidoMaterno = txtApellidoMaterno.getText().trim();
         String dni = txtDNI.getText().trim();
         String codigoUsuario = txtCodigoUsuario.getText().trim();
-        String pasword = txtClave.getText().trim();
+        String password = txtClave.getText().trim();
+        Rol rol = (Rol) cboRol.getSelectedItem();
+        String estado = txtEstado.getText().trim();
+        
+        if (nombre.isEmpty() || apellidoPaterno.isEmpty() || dni.isEmpty() ||
+            codigoUsuario.isEmpty() || password.isEmpty()) {
+
+            JOptionPane.showMessageDialog(this, 
+                "Complete todos los campos obligatorios.", 
+                "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if (dni.length() != 8) {
+            JOptionPane.showMessageDialog(this, 
+                "El DNI debe tener 8 dígitos.", 
+                "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if (rol == null) {
+            JOptionPane.showMessageDialog(this, 
+                "Seleccione un rol.", 
+                "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        Usuario nuevo = new Usuario();
+        nuevo.setNombre(nombre);
+        nuevo.setApellidoPaterno(apellidoPaterno);
+        nuevo.setApellidoMaterno(apellidoMaterno);
+        nuevo.setDni(dni);
+        nuevo.setCodigoUsuario(codigoUsuario);
+        nuevo.setPassword(password);
+        nuevo.setRol(rol);
+        nuevo.setEstado(estado);
+
+        boolean registrado = controlUsuario.agregarUsuario(nuevo);
+
+        if (registrado) {
+            JOptionPane.showMessageDialog(this, 
+                "Usuario registrado correctamente.");
+
+            cargarTablaUsuarios();
+            limpiarCampos();
+        } else {
+            JOptionPane.showMessageDialog(this, 
+                "No se pudo registrar el usuario.", 
+                "Error", JOptionPane.ERROR_MESSAGE);
+        }
+// TODO add your handling code here:
+    }//GEN-LAST:event_btnRegistrarActionPerformed
+
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+   
+        if (txtId.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, 
+                "Seleccione un usuario de la tabla para editar.",
+                "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        int idPersona;
+        try {
+            idPersona = Integer.parseInt(txtId.getText().trim());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, 
+                "El ID debe ser numérico.",
+                "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        String nombre = txtNombre.getText().trim();
+        String apellidoPaterno = txtApellidoPaterno.getText().trim();
+        String apellidoMaterno = txtApellidoMaterno.getText().trim();
+        String dni = txtDNI.getText().trim();
+        String codigoUsuario = txtCodigoUsuario.getText().trim();
+        String password = txtClave.getText().trim();
         Rol rol = (Rol) cboRol.getSelectedItem();
         String estado = txtEstado.getText().trim();
 
-        try {
-            codigo= Integer.parseInt(txtId.getText());
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Código"+
-                "debe ser sólo numérico","Error",JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        if(codigo==0 || nombre.isEmpty()){
-            JOptionPane.showMessageDialog(this, "El código / "+"nombre",
-                "Error",JOptionPane.ERROR_MESSAGE);
+        if (nombre.isEmpty() || apellidoPaterno.isEmpty() ||
+            dni.isEmpty() || codigoUsuario.isEmpty() || password.isEmpty()) {
+
+            JOptionPane.showMessageDialog(this, 
+                "Complete todos los campos obligatorios.",
+                "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
-        DefaultTableModel modelo = (DefaultTableModel) jtUsuario.getModel();
-        modelo.addRow(new Object[]{codigo,nombre,apellidoPaterno,apellidoMaterno,dni,codigoUsuario,pasword,rol,estado});
-        Usuario nuevo = new Usuario(codigo, nombre, apellidoPaterno, apellidoMaterno, dni, codigoUsuario, pasword, rol, estado);
+        if (dni.length() != 8) {
+            JOptionPane.showMessageDialog(this, 
+                "El DNI debe tener 8 dígitos.",
+                "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
 
-        controlUsuario.registrar(nuevo);
-        //DefaultTableModel modelo = (DefaultTableModel) jtUsuario.getModel();
-        //modelo.addRow(new Object[]{codigo, nombre, apellidoPaterno, apellidoMaterno, dni, codigoUsuario, pasword, rol, estado});
+        Usuario usuario = new Usuario();
+        usuario.setIdPersona(idPersona);
+        usuario.setNombre(nombre);
+        usuario.setApellidoPaterno(apellidoPaterno);
+        usuario.setApellidoMaterno(apellidoMaterno);
+        usuario.setDni(dni);
+        usuario.setCodigoUsuario(codigoUsuario);
+        usuario.setPassword(password);
+        usuario.setRol(rol);
+        usuario.setEstado(estado);
 
-        cargarTablaUsuarios();
-        limpiarCampos();
-// TODO add your handling code here:
-    }//GEN-LAST:event_btnRegistrarActionPerformed
+        boolean actualizado = controlUsuario.editarUsuario(usuario);
+
+        if (actualizado) {
+            JOptionPane.showMessageDialog(this, 
+                "Usuario actualizado correctamente.");
+
+            cargarTablaUsuarios();
+            limpiarCampos();
+        } else {
+            JOptionPane.showMessageDialog(this, 
+                "No se pudo actualizar el usuario.",
+                "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -365,10 +469,12 @@ public class VistaUsuarios extends javax.swing.JFrame {
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
-    public void cargarTiposEnCombo(){
+    public void cargarRoles(){
         cboRol.removeAllItems();
-        for (Rol t : controlrol.listarRoles()) {
-            cboRol.addItem(t);
+        List<Rol> roles = controlrol.listarRoles();
+
+        for (Rol tp : roles) {
+            cboRol.addItem(tp);
         }
     }
     public void limpiarCampos(){
@@ -387,7 +493,7 @@ public class VistaUsuarios extends javax.swing.JFrame {
     DefaultTableModel modelo = (DefaultTableModel) jtUsuario.getModel();
     modelo.setRowCount(0);
 
-    for (Usuario u : controlUsuario.listar()) {
+    for (Usuario u : controlUsuario.listarUsuarios()) {
         modelo.addRow(new Object[]{
             u.getIdPersona(),
             u.getNombre(),
