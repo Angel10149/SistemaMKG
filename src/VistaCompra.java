@@ -15,51 +15,6 @@ public class VistaCompra extends javax.swing.JFrame {
         configurarTabla();
         limpiarComboCantidad();
     }
-    private void configurarTabla() {
-        modeloTabla = new DefaultTableModel(
-                new Object[]{"Código", "Producto", "Precio Compra", "Cantidad", "Subtotal"}, 0
-        );
-        jtVistaCompra.setModel(modeloTabla);
-    }
-    private void limpiarComboCantidad() {
-        cboTipoDocumento3.removeAllItems();
-        for (int i = 1; i <= 20; i++) {
-            cboTipoDocumento3.addItem(String.valueOf(i));
-        }
-    }
-    
-    private void agregarDetalle() {
-        try {
-            String codigo = txtNumeroDocumento5.getText();
-            String nombre = txtNumeroDocumento6.getText();
-            double precio = Double.parseDouble(txtNumeroDocumento7.getText());
-            int cantidad = Integer.parseInt(cboTipoDocumento3.getSelectedItem().toString());
-            double subtotal = precio * cantidad;
-
-            modeloTabla.addRow(new Object[]{
-                codigo, nombre, precio, cantidad, subtotal
-            });
-
-            calcularTotal();
-
-        } catch (Exception e) {
-            System.out.println("Error al agregar detalle: " + e.getMessage());
-        }
-    }
-
-    private void calcularTotal() {
-        double total = 0;
-        for (int i = 0; i < modeloTabla.getRowCount(); i++) {
-            total += Double.parseDouble(modeloTabla.getValueAt(i, 4).toString());
-        }
-        txtMontoTotal.setText(String.valueOf(total));
-    }
-}
-
-private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {
-// Aquí luego agregarás el guardado en la BD
-System.out.println("Compra registrada.");
-}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -417,4 +372,43 @@ System.out.println("Compra registrada.");
     private javax.swing.JTextField txtNumeroDocumento6;
     private javax.swing.JTextField txtNumeroDocumento7;
     // End of variables declaration//GEN-END:variables
+    private void configurarTabla() {
+        /*modeloTabla = new DefaultTableModel(
+                new Object[]{"Código", "Producto", "Precio Compra", "Cantidad", "Subtotal"}, 0
+        );
+        jtVistaCompra.setModel(modeloTabla);*/
+    }
+    private void limpiarComboCantidad() {
+        cboTipoDocumento3.removeAllItems();
+        for (int i = 1; i <= 20; i++) {
+            cboTipoDocumento3.addItem(String.valueOf(i));
+        }
+    }
+    
+    private void agregarDetalle() {
+       /* try {
+            String codigo = txtNumeroDocumento5.getText();
+            String nombre = txtNumeroDocumento6.getText();
+            double precio = Double.parseDouble(txtNumeroDocumento7.getText());
+            int cantidad = Integer.parseInt(cboTipoDocumento3.getSelectedItem().toString());
+            double subtotal = precio * cantidad;
+
+            modeloTabla.addRow(new Object[]{
+                codigo, nombre, precio, cantidad, subtotal
+            });
+
+            calcularTotal();
+
+        } catch (Exception e) {
+            System.out.println("Error al agregar detalle: " + e.getMessage());
+        }*/
+    }
+
+    private void calcularTotal() {
+        /*double total = 0;
+        for (int i = 0; i < modeloTabla.getRowCount(); i++) {
+            total += Double.parseDouble(modeloTabla.getValueAt(i, 4).toString());
+        }
+        txtMontoTotal.setText(String.valueOf(total));*/
+    }
 }
