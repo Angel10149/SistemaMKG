@@ -322,28 +322,26 @@ public class VistaVenta extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
+                .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 543, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(12, 12, 12)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(127, Short.MAX_VALUE)
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44))
         );
+
+        jPanel1.getAccessibleContext().setAccessibleName("venta");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -411,8 +409,8 @@ public class VistaVenta extends javax.swing.JFrame {
                     "Error al eliminar producto.",
                     "Error",
                     JOptionPane.ERROR_MESSAGE);
-            }*/
-        }
+            }
+        }*/
     }//GEN-LAST:event_btnEliminar3ActionPerformed
 
     private void btnEditar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditar3ActionPerformed
@@ -467,7 +465,7 @@ public class VistaVenta extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEditar3ActionPerformed
 
     private void btnRegistrar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrar3ActionPerformed
-        if (!validarCampos()) {
+       /* if (!validarCampos()) {
             return;
         }
 
@@ -505,7 +503,7 @@ public class VistaVenta extends javax.swing.JFrame {
             limpiarCampos();
         } else {
             JOptionPane.showMessageDialog(this, "Error al registrar producto.", "Error", JOptionPane.ERROR_MESSAGE);
-        }
+        }*/
     }//GEN-LAST:event_btnRegistrar3ActionPerformed
 
     /**
@@ -545,50 +543,14 @@ public class VistaVenta extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Precio;
-    private javax.swing.JButton btnEditar;
-    private javax.swing.JButton btnEditar1;
-    private javax.swing.JButton btnEditar2;
     private javax.swing.JButton btnEditar3;
-    private javax.swing.JButton btnEliminar;
-    private javax.swing.JButton btnEliminar1;
-    private javax.swing.JButton btnEliminar2;
     private javax.swing.JButton btnEliminar3;
-    private javax.swing.JButton btnLimpiar;
-    private javax.swing.JButton btnLimpiar1;
-    private javax.swing.JButton btnLimpiar2;
     private javax.swing.JButton btnLimpiar3;
-    private javax.swing.JButton btnRegistrar;
-    private javax.swing.JButton btnRegistrar1;
-    private javax.swing.JButton btnRegistrar2;
     private javax.swing.JButton btnRegistrar3;
     private javax.swing.JButton btnRegistrarVenta;
-    private javax.swing.JComboBox<Categoria> cboTipo;
-    private javax.swing.JComboBox<Categoria> cboTipo1;
-    private javax.swing.JComboBox<Categoria> cboTipo2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
@@ -596,59 +558,32 @@ public class VistaVenta extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jtVenta;
-    private javax.swing.JTextField txtCodigo;
-    private javax.swing.JTextField txtCodigo1;
-    private javax.swing.JTextField txtCodigo2;
     private javax.swing.JTextField txtCodigo3;
-    private javax.swing.JTextField txtDescripcion;
-    private javax.swing.JTextField txtDescripcion1;
-    private javax.swing.JTextField txtDescripcion2;
     private javax.swing.JTextField txtEstado;
     private javax.swing.JTextField txtFecha;
     private javax.swing.JTextField txtFechaHora;
-    private javax.swing.JTextField txtMarca;
-    private javax.swing.JTextField txtMarca1;
-    private javax.swing.JTextField txtMarca2;
-    private javax.swing.JTextField txtMargen;
-    private javax.swing.JTextField txtMargen1;
-    private javax.swing.JTextField txtMargen2;
-    private javax.swing.JTextField txtNombre;
-    private javax.swing.JTextField txtNombre1;
-    private javax.swing.JTextField txtNombre2;
     private javax.swing.JTextField txtNombre3;
     private javax.swing.JTextField txtPrecio;
-    private javax.swing.JTextField txtStockMaximo;
-    private javax.swing.JTextField txtStockMaximo1;
-    private javax.swing.JTextField txtStockMaximo2;
     private javax.swing.JTextField txtStockMaximo3;
-    private javax.swing.JTextField txtStockMinimo;
-    private javax.swing.JTextField txtStockMinimo1;
-    private javax.swing.JTextField txtStockMinimo2;
     private javax.swing.JTextField txtStockMinimo3;
     private javax.swing.JTextField txtTotal;
     private javax.swing.JTextField txtVendedor;
     private javax.swing.JTextField txtidVenta;
     // End of variables declaration//GEN-END:variables
     public void cargarRoles(){
-        cboRol.removeAllItems();
+        /*cboRol.removeAllItems();
         List<Rol> roles = controlrol.listarRoles();
 
         for (Rol tp : roles) {
             cboRol.addItem(tp);
-        }
+        }*/
     }
     public void limpiarCampos(){
-        txtId.setText("");
+        /*txtId.setText("");
         txtNombre.setText("");
         txtApellidoPaterno.setText("");
         txtApellidoMaterno.setText("");
@@ -656,10 +591,10 @@ public class VistaVenta extends javax.swing.JFrame {
         txtCodigoUsuario.setText("");
         txtClave.setText("");
         cboRol.setSelectedIndex(-1);
-        txtEstado.setText("");
+        txtEstado.setText("");*/
     }
     private void cargarTablaUsuarios() {
-        
+       /*
     DefaultTableModel modelo = (DefaultTableModel) jtUsuario.getModel();
     modelo.setRowCount(0);
 
@@ -675,6 +610,6 @@ public class VistaVenta extends javax.swing.JFrame {
             u.getRol().getNombreRol(),
             u.getEstado()
         });
-    }
+    }*/
     }
 }
