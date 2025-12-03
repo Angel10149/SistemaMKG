@@ -1,30 +1,32 @@
 package controller;
 
+import conexion.ConexionBD;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import model.Rol;
 
 public class ControllerRol {
-    private ArrayList<Rol> listaRoles = new ArrayList<>();
+    public List<Rol> listarRoles() {
+        List<Rol> lista = new ArrayList<>();
+        String sql = "SELECT idRol, nombre FROM rol"; 
 
-    public ControllerRol() {
-        listaRoles.add(new Rol(1, "Administrador", "Acceso completo al sistema"));
-        listaRoles.add(new Rol(2, "Vendedor", "Gestiona ventas y clientes"));
-        listaRoles.add(new Rol(3, "Cajero", "Control de caja y pagos"));
-        listaRoles.add(new Rol(4, "Almacenero", "Control de inventario y productos"));
-    }
+        try (Connection cn = ConexionBD.getConnection();
+             PreparedStatement ps = cn.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
 
-    public void registrarRol(Rol r) {
-        listaRoles.add(r);
-    }
-    public Rol buscarRolPorNombre(String nombre) {
-        for (Rol r : listaRoles) {
-            if (r.getNombreRol().equalsIgnoreCase(nombre)) {
-                return r;
+            while (rs.next()) {
+                Rol tp = new Rol();
+                tp.setIdRol(rs.getInt("idRol"));         
+                tp.setNombreRol(rs.getString("nombre"));  
+                lista.add(tp);
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-        return null;
-    }
-    public ArrayList<Rol> listarRoles() {
-        return listaRoles;
+        return lista;
     }
 }
