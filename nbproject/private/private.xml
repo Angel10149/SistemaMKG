@@ -3,16 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/LENOVO/Desktop/SistemaMKG/src/view/DetalleCompra.java</file>
-            <file>file:/C:/Users/LENOVO/Desktop/SistemaMKG/src/model/DetalleCompra.java</file>
+            <file>file:/C:/Users/LENOVO/Desktop/SistemaMKG/src/view/VistaCompra.java</file>
+            <file>file:/C:/Users/LENOVO/Desktop/SistemaMKG/src/view/VistaProducto.java</file>
             <file>file:/C:/Users/LENOVO/Desktop/SistemaMKG/src/controller/ControllerCompra.java</file>
-=======
-            <file>file:/C:/Users/KEVIN%20SANGAY/Desktop/SATYE/SistemaMKG/src/view/VistaProducto.java</file>
-            <file>file:/C:/Users/KEVIN%20SANGAY/Desktop/SATYE/SistemaMKG/src/conexion/ConexionBD.java</file>
-            <file>file:/C:/Users/KEVIN%20SANGAY/Desktop/SATYE/SistemaMKG/src/model/Categoria.java</file>
-            <file>file:/C:/Users/KEVIN%20SANGAY/Desktop/SATYE/SistemaMKG/src/controller/ControllerCategoria.java</file>
->>>>>>> e2bd43c (actualizac13.9)
+            <file>file:/C:/Users/LENOVO/Desktop/SistemaMKG/src/model/Compra.java</file>
         </group>
     </open-files>
 </project-private>
