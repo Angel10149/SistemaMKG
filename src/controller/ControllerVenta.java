@@ -1,50 +1,46 @@
 package controller;
 
+import conexion.ConexionBD;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
-import model.DetalleVenta;
-import model.Producto;
+import java.util.List;
 import model.Venta;
 
-public class ControllerVenta implements IServicio<Venta>{
-    private ArrayList<Venta> ventas = new ArrayList<>();
+public class ControllerVenta {
+   public List<Venta> listarVentas() {
+        List<Venta> lista = new ArrayList<>();
+        String sql = "SELECT idVenta, idUsuario, tipoDocumento, numeroDocumento, documentoCliente, "
+               + "nombreCliente, montoPago, montoCambio, montoTotal, fechaRegistro "
+               + "FROM VENTA";
 
-    @Override
-    public void registrar(Venta venta) {
-        ventas.add(venta);
-        for (DetalleVenta d : venta.getDetalles()) {
-            Producto p = d.getProducto();
-            p.setStockActual(p.getStockActual() - d.getCantidad());
-        }
-    }
+        try (Connection cn = ConexionBD.getConnection();
+         PreparedStatement ps = cn.prepareStatement(sql);
+         ResultSet rs = ps.executeQuery()) {
 
-    @Override
-    public Venta buscar(int id) {
-        for (Venta v : ventas)
-            if (v.getIdVenta() == id)
-                return v;
-        return null;
-    }
+            while (rs.next()) {
+                Venta v = new Venta();
 
-    @Override
-    public boolean editar(int id, Venta nuevo) {
-        for (int i = 0; i < ventas.size(); i++) {
-            if (ventas.get(i).getIdVenta() == id) {
-                ventas.set(i, nuevo);
-                return true;
+                v.setIdVenta(rs.getInt("idVenta"));
+                v.setIdUsuario(rs.getInt("idUsuario"));
+                v.setTipoDocumento(rs.getString("tipoDocumento"));
+                v.setNumeroDocumento(rs.getString("numeroDocumento"));
+                v.setDocumentoCliente(rs.getString("documentoCliente"));
+                v.setNombreCliente(rs.getString("nombreCliente"));
+                v.setMontoPago(rs.getDouble("montoPago"));
+                v.setMontoCambio(rs.getDouble("montoCambio"));
+                v.setMontoTotal(rs.getDouble("montoTotal"));
+                v.setFechaRegistro(rs.getTimestamp("fechaRegistro"));
+
+                lista.add(v);
             }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-        return false;
-    }
 
-    @Override
-    public boolean eliminar(int id) {
-        Venta v = buscar(id);
-        if (v != null) return ventas.remove(v);
-        return false;
-    }
-
-    @Override
-    public ArrayList<Venta> listar() {
-        return ventas;
+        return lista;
     }
 }

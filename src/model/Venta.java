@@ -2,39 +2,34 @@ package model;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Venta {
     private int idVenta;
-    private String fecha;
-    private Cliente cliente;
-    private Usuario vendedor;
-    private ArrayList<DetalleVenta> detalles;
-    private double total;
-    private LocalDateTime fechaHora;
-    private String estado;
+    private int idUsuario;
+    private String tipoDocumento;
+    private String numeroDocumento;
+    private String documentoCliente;
+    private String nombreCliente;
+    private double montoPago;
+    private double montoCambio;
+    private double montoTotal;
+    private java.util.Date fechaRegistro;
     
     public Venta() {
     }
 
-    public Venta(int idVenta, String fecha, Cliente cliente, Usuario vendedor, ArrayList<DetalleVenta> detalles, double total, LocalDateTime fechaHora, String estado) {
+    public Venta(int idVenta, int idUsuario, String tipoDocumento, String numeroDocumento, String documentoCliente, String nombreCliente, double montoPago, double montoCambio, double montoTotal, Date fechaRegistro) {
         this.idVenta = idVenta;
-        this.fecha = fecha;
-        this.cliente = cliente;
-        this.vendedor = vendedor;
-        this.detalles = detalles;
-        this.total = total;
-        this.fechaHora = fechaHora;
-        this.estado = estado;
-    }
-
-    public Venta(String fecha, Cliente cliente, Usuario vendedor, ArrayList<DetalleVenta> detalles, double total, LocalDateTime fechaHora, String estado) {
-        this.fecha = fecha;
-        this.cliente = cliente;
-        this.vendedor = vendedor;
-        this.detalles = detalles;
-        this.total = total;
-        this.fechaHora = fechaHora;
-        this.estado = estado;
+        this.idUsuario = idUsuario;
+        this.tipoDocumento = tipoDocumento;
+        this.numeroDocumento = numeroDocumento;
+        this.documentoCliente = documentoCliente;
+        this.nombreCliente = nombreCliente;
+        this.montoPago = montoPago;
+        this.montoCambio = montoCambio;
+        this.montoTotal = montoTotal;
+        this.fechaRegistro = fechaRegistro;
     }
 
     public int getIdVenta() {
@@ -45,79 +40,88 @@ public class Venta {
         this.idVenta = idVenta;
     }
 
-    public String getFecha() {
-        return fecha;
+    public int getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
-    public Cliente getCliente() {
-        return cliente;
+    public String getTipoDocumento() {
+        return tipoDocumento;
     }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public void setTipoDocumento(String tipoDocumento) {
+        this.tipoDocumento = tipoDocumento;
     }
 
-    public Usuario getVendedor() {
-        return vendedor;
+    public String getNumeroDocumento() {
+        return numeroDocumento;
     }
 
-    public void setVendedor(Usuario vendedor) {
-        this.vendedor = vendedor;
+    public void setNumeroDocumento(String numeroDocumento) {
+        this.numeroDocumento = numeroDocumento;
     }
 
-    public ArrayList<DetalleVenta> getDetalles() {
-        return detalles;
+    public String getDocumentoCliente() {
+        return documentoCliente;
     }
 
-    public void setDetalles(ArrayList<DetalleVenta> detalles) {
-        this.detalles = detalles;
+    public void setDocumentoCliente(String documentoCliente) {
+        this.documentoCliente = documentoCliente;
     }
 
-    public double getTotal() {
-        return total;
+    public String getNombreCliente() {
+        return nombreCliente;
     }
 
-    public void setTotal(double total) {
-        this.total = total;
+    public void setNombreCliente(String nombreCliente) {
+        this.nombreCliente = nombreCliente;
     }
 
-    public LocalDateTime getFechaHora() {
-        return fechaHora;
+    public double getMontoPago() {
+        return montoPago;
     }
 
-    public void setFechaHora(LocalDateTime fechaHora) {
-        this.fechaHora = fechaHora;
+    public void setMontoPago(double montoPago) {
+        this.montoPago = montoPago;
     }
 
-    public String getEstado() {
-        return estado;
+    public double getMontoCambio() {
+        return montoCambio;
     }
 
-    public void setEstado(String estado) {
-        this.estado = estado;
+    public void setMontoCambio(double montoCambio) {
+        this.montoCambio = montoCambio;
+    }
+
+    public double getMontoTotal() {
+        return montoTotal;
+    }
+
+    public void setMontoTotal(double montoTotal) {
+        this.montoTotal = montoTotal;
+    }
+
+    public Date getFechaRegistro() {
+        return fechaRegistro;
+    }
+
+    public void setFechaRegistro(Date fechaRegistro) {
+        this.fechaRegistro = fechaRegistro;
     }
 
     @Override
     public String toString() {
-        return "Venta{" + "idVenta=" + idVenta + ", fecha=" + fecha + ", cliente=" + cliente + ", vendedor=" + vendedor + ", total=" + total + ", fechaHora=" + fechaHora + ", estado=" + estado + '}';
-    }
-    public void agregarDetalle(DetalleVenta detalle) {
-        detalles.add(detalle);
-        calcularTotal();
+        return "Venta{" + "idVenta=" + idVenta + ", idUsuario=" + idUsuario + ", tipoDocumento=" + tipoDocumento + ", numeroDocumento=" + numeroDocumento + ", documentoCliente=" + documentoCliente + ", nombreCliente=" + nombreCliente + ", montoPago=" + montoPago + ", montoCambio=" + montoCambio + ", montoTotal=" + montoTotal + ", fechaRegistro=" + fechaRegistro + '}';
     }
 
-    public void eliminarDetalle(Producto producto) {
-        detalles.removeIf(d -> d.getProducto().equals(producto));
-        calcularTotal();
-    }
+  
 
     public void calcularTotal() {
-        total = 0;
+        /*total = 0;
         for (DetalleVenta d : detalles)
-            total += d.getSubtotal();
+            total += d.getSubtotal();*/
     }
 }
