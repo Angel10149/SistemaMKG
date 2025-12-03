@@ -1,97 +1,110 @@
 package controller;
 
+import conexion.ConexionBD;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 import model.Rol;
 import model.Usuario;
 
-public class ControllerUsuario implements IServicio<Usuario>{
-    private ArrayList<Usuario> usuarios = new ArrayList<>();
-    public ControllerUsuario(){
-        usuarios.add(new Usuario(1,"Carlos","Pérez","Ramírez","12345678",
-        "admin01","admin123",
-        new Rol(1, "Administrador", "Acceso completo al sistema"),
-        "Activo"
-        ));
+public class ControllerUsuario {
+    public List<Usuario> listarUsuarios() {
+        List<Usuario> lista = new ArrayList<>();
+        String sql = "SELECT p.idPersona, p.nombre, p.apellidoPaterno, p.apellidoMaterno, p.dni, "
+                   + "u.codigoUsuario, u.password, u.estado, "
+                   + "r.idRol, r.nombre AS nombreRol, r.descripcion "
+                   + "FROM Persona p "
+                   + "INNER JOIN usuario u ON p.idPersona = u.idPersona "
+                   + "INNER JOIN rol r ON u.idRol = r.idRol";
 
-    usuarios.add(new Usuario(2,"María","Gómez","Torres","23456789","vend01",
-        "venta123",
-        new Rol(2, "Vendedor", "Gestiona ventas y clientes"),"Activo"));
+        try (Connection cn = ConexionBD.getConnection();
+         PreparedStatement ps = cn.prepareStatement(sql);
+         ResultSet rs = ps.executeQuery()) {
 
-    usuarios.add(new Usuario(3,"Luis","Fernández","López","34567890","caja01",
-        "caja123",
-        new Rol(3, "Cajero", "Control de caja y pagos"),"Activo"
-        ));
+            while (rs.next()) {
+                Usuario u = new Usuario();
+                u.setIdPersona(rs.getInt("idPersona"));
+                u.setNombre(rs.getString("nombre"));
+                u.setApellidoPaterno(rs.getString("apellidoPaterno"));
+                u.setApellidoMaterno(rs.getString("apellidoMaterno"));
+                u.setDni(rs.getString("dni"));
+                u.setCodigoUsuario(rs.getString("codigoUsuario"));
+                u.setPassword(rs.getString("password"));
+                u.setEstado(rs.getString("estado"));
+                Rol rol = new Rol();
+                rol.setIdRol(rs.getInt("idRol"));
+                rol.setNombreRol(rs.getString("nombreRol"));
+                rol.setDescripcion(rs.getString("descripcion"));
+                u.setRol(rol);
+                lista.add(u);
+            }
 
-    usuarios.add(new Usuario(
-        4,
-        "Ana",
-        "Ruiz",
-        "Martínez",
-        "45678901",
-        "almac01",
-        "almac123",
-        new Rol(4, "Almacenero", "Control de inventario y productos"),
-        "Activo"
-    ));
-    }
-    @Override
-    public void registrar(Usuario usuario) {
-        if (usuario == null) {
-            JOptionPane.showMessageDialog(null, "No se puede registrar un usuario nulo.");
-            return;
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-        usuarios.add(usuario);
-        JOptionPane.showMessageDialog(null, "Usuario registrado correctamente.");
-    }
 
-    @Override
-    public Usuario buscar(int id) {
-        for (Usuario u : usuarios)
-            if (u.getIdPersona() == id)
-                return u;
-        JOptionPane.showMessageDialog(null, "Usuario no encontrado.");
-        return null;
+        return lista;
     }
-
-    @Override
-    public boolean editar(int id, Usuario nuevo) {
-        for (int i = 0; i < usuarios.size(); i++) {
-            if (usuarios.get(i).getIdPersona() == id) {
-                usuarios.set(i, nuevo);
-                JOptionPane.showMessageDialog(null, "Usuario editado correctamente.");
+    public boolean agregarUsuario(Usuario usuario) {
+        String sqlPersona = "INSERT INTO Persona (nombre, apellidoPaterno, apellidoMaterno, dni) VALUES (?, ?, ?, ?)";
+        String sqlUsuario = "INSERT INTO usuario (idPersona, codigoUsuario, password, idRol, estado) VALUES (?, ?, ?, ?, ?)";
+        try (Connection cn = ConexionBD.getConnection();
+             PreparedStatement psPersona = cn.prepareStatement(sqlPersona, PreparedStatement.RETURN_GENERATED_KEYS);
+             PreparedStatement psUsuario = cn.prepareStatement(sqlUsuario)) {
+            
+            psPersona.setString(1, usuario.getNombre());
+            psPersona.setString(2, usuario.getApellidoPaterno());
+            psPersona.setString(3, usuario.getApellidoMaterno());
+            psPersona.setString(4, usuario.getDni());
+            psPersona.executeUpdate();
+        
+            ResultSet rs = psPersona.getGeneratedKeys();
+            if (rs.next()) {
+                int idPersona = rs.getInt(1);
+                
+                psUsuario.setInt(1, idPersona);
+                psUsuario.setString(2, usuario.getCodigoUsuario());
+                psUsuario.setString(3, usuario.getPassword());  // Hashea en producción
+                psUsuario.setInt(4, usuario.getRol().getIdRol());
+                psUsuario.setString(5, usuario.getEstado());
+                psUsuario.executeUpdate();
                 return true;
             }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al agregar usuario: " + e.getMessage());
+            e.printStackTrace();
         }
-        JOptionPane.showMessageDialog(null, "Usuario no encontrado.");
         return false;
     }
-
-    @Override
-    public boolean eliminar(int id) {
-        for (Usuario u : usuarios) {
-            if (u.getIdPersona() == id) {
-                usuarios.remove(u);
-                JOptionPane.showMessageDialog(null, "Usuario eliminado correctamente.");
-                return true;
-            }
-        }
-        JOptionPane.showMessageDialog(null, "Usuario no encontrado.");
-        return false;
+    public boolean editarUsuario(Usuario usuario) {
+    String sqlPersona = "UPDATE Persona SET nombre=?, apellidoPaterno=?, apellidoMaterno=?, dni=? WHERE idPersona=?";
+    String sqlUsuario = "UPDATE usuario SET codigoUsuario=?, password=?, idRol=?, estado=? WHERE idPersona=?";
+    try (Connection cn = ConexionBD.getConnection();
+         PreparedStatement psPersona = cn.prepareStatement(sqlPersona);
+         PreparedStatement psUsuario = cn.prepareStatement(sqlUsuario)) {
+        
+        psPersona.setString(1, usuario.getNombre());
+        psPersona.setString(2, usuario.getApellidoPaterno());
+        psPersona.setString(3, usuario.getApellidoMaterno());
+        psPersona.setString(4, usuario.getDni());
+        psPersona.setInt(5, usuario.getIdPersona());
+        psPersona.executeUpdate();
+        
+        psUsuario.setString(1, usuario.getCodigoUsuario());
+        psUsuario.setString(2, usuario.getPassword());
+        psUsuario.setInt(3, usuario.getRol().getIdRol());
+        psUsuario.setString(4, usuario.getEstado());
+        psUsuario.setInt(5, usuario.getIdPersona());
+        psUsuario.executeUpdate();
+        return true;
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, "Error al editar usuario: " + e.getMessage());
+        e.printStackTrace();
     }
-
-    @Override
-    public ArrayList<Usuario> listar() {
-        return usuarios;
-    }
-    public boolean validarLogin(String codUsuario, String password) {
-        for (Usuario u : usuarios) {
-            if (u.getCodigoUsuario().equals(codUsuario) &&
-                u.getPassword().equals(password)) {
-                return true;
-            }
-        }
-        JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos.");
         return false;
     }
 }
